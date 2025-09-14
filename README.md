@@ -2,22 +2,22 @@ AHORRA YA PRESENTACIÓN
 
 📘 Nombre del proyecto:
 
-> “Ahorra Ya”
-> 
+ “Ahorra Ya”
+ 
 
 ❓ Problema
 
-> 
-> 
-> 
-> En muchas ciudades, comparar precios entre supermercados es difícil porque las personas no pueden recorrerlos todos.
-> 
-> **“Ahorra Ya”**
-> 
-> busca resolver esto con ayuda de la comunidad:
-> 
-> cualquier persona puede compartir los precios que encuentra, para que todos podamos ahorrar.
-> 
+
+
+
+ En muchas ciudades, comparar precios entre supermercados es difícil porque las personas no pueden recorrerlos todos.
+
+ **“Ahorra Ya”**
+ 
+ busca resolver esto con ayuda de la comunidad:
+ 
+ cualquier persona puede compartir los precios que encuentra, para que todos podamos ahorrar.
+ 
 
 🔧 Uso de la API
 
