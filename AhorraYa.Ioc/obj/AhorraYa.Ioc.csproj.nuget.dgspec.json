@@ -1,0 +1,330 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\EDI III\\AhorraYa\\AhorraYa.Ioc\\AhorraYa.Ioc.csproj": {}
+  },
+  "projects": {
+    "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj",
+        "projectName": "AhorraYa.Data",
+        "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj",
+        "packagesPath": "C:\\Users\\baezk\\.nuget\\packages\\",
+        "outputPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\vvvvvv\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\baezk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\AhorraYa.Models.csproj": {
+                "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\AhorraYa.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\EDI III\\AhorraYa\\AhorraYa.Ioc\\AhorraYa.Ioc.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\EDI III\\AhorraYa\\AhorraYa.Ioc\\AhorraYa.Ioc.csproj",
+        "projectName": "AhorraYa.Ioc",
+        "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Ioc\\AhorraYa.Ioc.csproj",
+        "packagesPath": "C:\\Users\\baezk\\.nuget\\packages\\",
+        "outputPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Ioc\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\vvvvvv\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\baezk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj": {
+                "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj"
+              },
+              "D:\\EDI III\\AhorraYa\\AhorraYa.Services\\AhorraYa.Services.csproj": {
+                "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Services\\AhorraYa.Services.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\AhorraYa.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\AhorraYa.Models.csproj",
+        "projectName": "AhorraYa.Models",
+        "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\AhorraYa.Models.csproj",
+        "packagesPath": "C:\\Users\\baezk\\.nuget\\packages\\",
+        "outputPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\vvvvvv\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\baezk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.Identity.Stores": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\EDI III\\AhorraYa\\AhorraYa.Services\\AhorraYa.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\EDI III\\AhorraYa\\AhorraYa.Services\\AhorraYa.Services.csproj",
+        "projectName": "AhorraYa.Services",
+        "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Services\\AhorraYa.Services.csproj",
+        "packagesPath": "C:\\Users\\baezk\\.nuget\\packages\\",
+        "outputPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\vvvvvv\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\baezk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj": {
+                "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj"
+              },
+              "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\AhorraYa.Models.csproj": {
+                "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\AhorraYa.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.12.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

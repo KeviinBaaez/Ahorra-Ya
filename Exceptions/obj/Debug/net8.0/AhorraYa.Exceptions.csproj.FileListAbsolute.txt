@@ -1,0 +1,11 @@
+D:\EDI III\AhorraYa\Exceptions\bin\Debug\net8.0\AhorraYa.Exceptions.deps.json
+D:\EDI III\AhorraYa\Exceptions\bin\Debug\net8.0\AhorraYa.Exceptions.dll
+D:\EDI III\AhorraYa\Exceptions\bin\Debug\net8.0\AhorraYa.Exceptions.pdb
+D:\EDI III\AhorraYa\Exceptions\obj\Debug\net8.0\AhorraYa.Exceptions.GeneratedMSBuildEditorConfig.editorconfig
+D:\EDI III\AhorraYa\Exceptions\obj\Debug\net8.0\AhorraYa.Exceptions.AssemblyInfoInputs.cache
+D:\EDI III\AhorraYa\Exceptions\obj\Debug\net8.0\AhorraYa.Exceptions.AssemblyInfo.cs
+D:\EDI III\AhorraYa\Exceptions\obj\Debug\net8.0\AhorraYa.Exceptions.csproj.CoreCompileInputs.cache
+D:\EDI III\AhorraYa\Exceptions\obj\Debug\net8.0\AhorraYa.Exceptions.dll
+D:\EDI III\AhorraYa\Exceptions\obj\Debug\net8.0\refint\AhorraYa.Exceptions.dll
+D:\EDI III\AhorraYa\Exceptions\obj\Debug\net8.0\AhorraYa.Exceptions.pdb
+D:\EDI III\AhorraYa\Exceptions\obj\Debug\net8.0\ref\AhorraYa.Exceptions.dll

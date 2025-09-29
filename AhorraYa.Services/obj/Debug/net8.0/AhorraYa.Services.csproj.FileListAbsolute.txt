@@ -1,0 +1,17 @@
+D:\EDI III\AhorraYa\AhorraYa.Services\bin\Debug\net8.0\AhorraYa.Services.deps.json
+D:\EDI III\AhorraYa\AhorraYa.Services\bin\Debug\net8.0\AhorraYa.Services.dll
+D:\EDI III\AhorraYa\AhorraYa.Services\bin\Debug\net8.0\AhorraYa.Services.pdb
+D:\EDI III\AhorraYa\AhorraYa.Services\bin\Debug\net8.0\AhorraYa.Data.dll
+D:\EDI III\AhorraYa\AhorraYa.Services\bin\Debug\net8.0\AhorraYa.Models.dll
+D:\EDI III\AhorraYa\AhorraYa.Services\bin\Debug\net8.0\AhorraYa.Data.pdb
+D:\EDI III\AhorraYa\AhorraYa.Services\bin\Debug\net8.0\AhorraYa.Models.pdb
+D:\EDI III\AhorraYa\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.Services.csproj.AssemblyReference.cache
+D:\EDI III\AhorraYa\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\EDI III\AhorraYa\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.Services.AssemblyInfoInputs.cache
+D:\EDI III\AhorraYa\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.Services.AssemblyInfo.cs
+D:\EDI III\AhorraYa\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.Services.csproj.CoreCompileInputs.cache
+D:\EDI III\AhorraYa\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.E902799F.Up2Date
+D:\EDI III\AhorraYa\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.Services.dll
+D:\EDI III\AhorraYa\AhorraYa.Services\obj\Debug\net8.0\refint\AhorraYa.Services.dll
+D:\EDI III\AhorraYa\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.Services.pdb
+D:\EDI III\AhorraYa\AhorraYa.Services\obj\Debug\net8.0\ref\AhorraYa.Services.dll

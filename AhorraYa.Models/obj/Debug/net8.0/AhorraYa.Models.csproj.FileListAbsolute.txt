@@ -1,0 +1,12 @@
+D:\EDI III\AhorraYa\AhorraYa.Models\bin\Debug\net8.0\AhorraYa.Models.deps.json
+D:\EDI III\AhorraYa\AhorraYa.Models\bin\Debug\net8.0\AhorraYa.Models.dll
+D:\EDI III\AhorraYa\AhorraYa.Models\bin\Debug\net8.0\AhorraYa.Models.pdb
+D:\EDI III\AhorraYa\AhorraYa.Models\obj\Debug\net8.0\AhorraYa.Models.csproj.AssemblyReference.cache
+D:\EDI III\AhorraYa\AhorraYa.Models\obj\Debug\net8.0\AhorraYa.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\EDI III\AhorraYa\AhorraYa.Models\obj\Debug\net8.0\AhorraYa.Models.AssemblyInfoInputs.cache
+D:\EDI III\AhorraYa\AhorraYa.Models\obj\Debug\net8.0\AhorraYa.Models.AssemblyInfo.cs
+D:\EDI III\AhorraYa\AhorraYa.Models\obj\Debug\net8.0\AhorraYa.Models.csproj.CoreCompileInputs.cache
+D:\EDI III\AhorraYa\AhorraYa.Models\obj\Debug\net8.0\AhorraYa.Models.dll
+D:\EDI III\AhorraYa\AhorraYa.Models\obj\Debug\net8.0\refint\AhorraYa.Models.dll
+D:\EDI III\AhorraYa\AhorraYa.Models\obj\Debug\net8.0\AhorraYa.Models.pdb
+D:\EDI III\AhorraYa\AhorraYa.Models\obj\Debug\net8.0\ref\AhorraYa.Models.dll
