@@ -3100,11 +3100,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj",
+      "projectUniqueName": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Data\\AhorraYa.Data.csproj",
       "projectName": "AhorraYa.Data",
-      "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj",
+      "projectPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Data\\AhorraYa.Data.csproj",
       "packagesPath": "C:\\Users\\baezk\\.nuget\\packages\\",
-      "outputPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\obj\\",
+      "outputPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\vvvvvv\\NuGetPackages"
@@ -3125,8 +3125,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\AhorraYa.Models.csproj": {
-              "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\AhorraYa.Models.csproj"
+            "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Models\\AhorraYa.Models.csproj": {
+              "projectPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Models\\AhorraYa.Models.csproj"
             }
           }
         }
@@ -3179,13 +3179,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error al obtener los datos de vulnerabilidad del paquete: No se puede cargar el índice de servicio del origen https://api.nuget.org/v3/index.json."
-    }
-  ]
+  }
 }

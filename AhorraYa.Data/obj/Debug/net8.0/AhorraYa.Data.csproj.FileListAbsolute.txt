@@ -13,3 +13,19 @@ D:\EDI III\AhorraYa\AhorraYa.Data\obj\Debug\net8.0\AhorraYa.Data.dll
 D:\EDI III\AhorraYa\AhorraYa.Data\obj\Debug\net8.0\refint\AhorraYa.Data.dll
 D:\EDI III\AhorraYa\AhorraYa.Data\obj\Debug\net8.0\AhorraYa.Data.pdb
 D:\EDI III\AhorraYa\AhorraYa.Data\obj\Debug\net8.0\ref\AhorraYa.Data.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Data\bin\Debug\net8.0\AhorraYa.Data.deps.json
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Data\bin\Debug\net8.0\AhorraYa.Data.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Data\bin\Debug\net8.0\AhorraYa.Data.pdb
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Data\bin\Debug\net8.0\AhorraYa.Models.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Data\bin\Debug\net8.0\AhorraYa.Models.pdb
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Data\obj\Debug\net8.0\AhorraYa.Data.csproj.AssemblyReference.cache
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Data\obj\Debug\net8.0\AhorraYa.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Data\obj\Debug\net8.0\AhorraYa.Data.AssemblyInfoInputs.cache
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Data\obj\Debug\net8.0\AhorraYa.Data.AssemblyInfo.cs
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Data\obj\Debug\net8.0\AhorraYa.Data.csproj.CoreCompileInputs.cache
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Data\obj\Debug\net8.0\AhorraYa.Data.sourcelink.json
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Data\obj\Debug\net8.0\AhorraYa.2B37235B.Up2Date
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Data\obj\Debug\net8.0\AhorraYa.Data.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Data\obj\Debug\net8.0\refint\AhorraYa.Data.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Data\obj\Debug\net8.0\AhorraYa.Data.pdb
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Data\obj\Debug\net8.0\ref\AhorraYa.Data.dll

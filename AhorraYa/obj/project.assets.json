@@ -5970,11 +5970,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\EDI III\\AhorraYa\\AhorraYa\\AhorraYa.WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa\\AhorraYa.WebApi.csproj",
       "projectName": "AhorraYa.WebApi",
-      "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa\\AhorraYa.WebApi.csproj",
+      "projectPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa\\AhorraYa.WebApi.csproj",
       "packagesPath": "C:\\Users\\baezk\\.nuget\\packages\\",
-      "outputPath": "D:\\EDI III\\AhorraYa\\AhorraYa\\obj\\",
+      "outputPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\vvvvvv\\NuGetPackages"
@@ -5995,11 +5995,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\EDI III\\AhorraYa\\AhorraYa.Ioc\\AhorraYa.Ioc.csproj": {
-              "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Ioc\\AhorraYa.Ioc.csproj"
+            "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Ioc\\AhorraYa.Ioc.csproj": {
+              "projectPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Ioc\\AhorraYa.Ioc.csproj"
             },
-            "D:\\EDI III\\AhorraYa\\AhorraYa.Services\\AhorraYa.Services.csproj": {
-              "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Services\\AhorraYa.Services.csproj"
+            "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Services\\AhorraYa.Services.csproj": {
+              "projectPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Services\\AhorraYa.Services.csproj"
             }
           }
         }

@@ -15,3 +15,21 @@ D:\EDI III\AhorraYa\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.Services.dll
 D:\EDI III\AhorraYa\AhorraYa.Services\obj\Debug\net8.0\refint\AhorraYa.Services.dll
 D:\EDI III\AhorraYa\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.Services.pdb
 D:\EDI III\AhorraYa\AhorraYa.Services\obj\Debug\net8.0\ref\AhorraYa.Services.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\bin\Debug\net8.0\AhorraYa.Services.deps.json
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\bin\Debug\net8.0\AhorraYa.Services.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\bin\Debug\net8.0\AhorraYa.Services.pdb
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\bin\Debug\net8.0\AhorraYa.Data.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\bin\Debug\net8.0\AhorraYa.Models.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\bin\Debug\net8.0\AhorraYa.Data.pdb
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\bin\Debug\net8.0\AhorraYa.Models.pdb
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.Services.csproj.AssemblyReference.cache
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.Services.AssemblyInfoInputs.cache
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.Services.AssemblyInfo.cs
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.Services.csproj.CoreCompileInputs.cache
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.Services.sourcelink.json
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.E902799F.Up2Date
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.Services.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\obj\Debug\net8.0\refint\AhorraYa.Services.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\obj\Debug\net8.0\AhorraYa.Services.pdb
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Services\obj\Debug\net8.0\ref\AhorraYa.Services.dll

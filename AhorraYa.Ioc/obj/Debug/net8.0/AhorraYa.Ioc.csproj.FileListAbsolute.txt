@@ -17,3 +17,23 @@ D:\EDI III\AhorraYa\AhorraYa.Ioc\obj\Debug\net8.0\AhorraYa.Ioc.dll
 D:\EDI III\AhorraYa\AhorraYa.Ioc\obj\Debug\net8.0\refint\AhorraYa.Ioc.dll
 D:\EDI III\AhorraYa\AhorraYa.Ioc\obj\Debug\net8.0\AhorraYa.Ioc.pdb
 D:\EDI III\AhorraYa\AhorraYa.Ioc\obj\Debug\net8.0\ref\AhorraYa.Ioc.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\bin\Debug\net8.0\AhorraYa.Ioc.deps.json
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\bin\Debug\net8.0\AhorraYa.Ioc.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\bin\Debug\net8.0\AhorraYa.Ioc.pdb
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\bin\Debug\net8.0\AhorraYa.Data.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\bin\Debug\net8.0\AhorraYa.Models.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\bin\Debug\net8.0\AhorraYa.Services.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\bin\Debug\net8.0\AhorraYa.Data.pdb
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\bin\Debug\net8.0\AhorraYa.Services.pdb
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\bin\Debug\net8.0\AhorraYa.Models.pdb
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\obj\Debug\net8.0\AhorraYa.Ioc.csproj.AssemblyReference.cache
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\obj\Debug\net8.0\AhorraYa.Ioc.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\obj\Debug\net8.0\AhorraYa.Ioc.AssemblyInfoInputs.cache
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\obj\Debug\net8.0\AhorraYa.Ioc.AssemblyInfo.cs
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\obj\Debug\net8.0\AhorraYa.Ioc.csproj.CoreCompileInputs.cache
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\obj\Debug\net8.0\AhorraYa.Ioc.sourcelink.json
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\obj\Debug\net8.0\AhorraYa.FDD750E8.Up2Date
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\obj\Debug\net8.0\AhorraYa.Ioc.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\obj\Debug\net8.0\refint\AhorraYa.Ioc.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\obj\Debug\net8.0\AhorraYa.Ioc.pdb
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Ioc\obj\Debug\net8.0\ref\AhorraYa.Ioc.dll

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj": {}
+    "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Data\\AhorraYa.Data.csproj": {}
   },
   "projects": {
-    "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj": {
+    "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Data\\AhorraYa.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj",
+        "projectUniqueName": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Data\\AhorraYa.Data.csproj",
         "projectName": "AhorraYa.Data",
-        "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj",
+        "projectPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Data\\AhorraYa.Data.csproj",
         "packagesPath": "C:\\Users\\baezk\\.nuget\\packages\\",
-        "outputPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\obj\\",
+        "outputPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\vvvvvv\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\AhorraYa.Models.csproj": {
-                "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\AhorraYa.Models.csproj"
+              "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Models\\AhorraYa.Models.csproj": {
+                "projectPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Models\\AhorraYa.Models.csproj"
               }
             }
           }
@@ -87,14 +87,14 @@
         }
       }
     },
-    "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\AhorraYa.Models.csproj": {
+    "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Models\\AhorraYa.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\AhorraYa.Models.csproj",
+        "projectUniqueName": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Models\\AhorraYa.Models.csproj",
         "projectName": "AhorraYa.Models",
-        "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\AhorraYa.Models.csproj",
+        "projectPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Models\\AhorraYa.Models.csproj",
         "packagesPath": "C:\\Users\\baezk\\.nuget\\packages\\",
-        "outputPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\obj\\",
+        "outputPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\vvvvvv\\NuGetPackages"

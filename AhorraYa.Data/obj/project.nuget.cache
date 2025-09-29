@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "u9f8TjcajPY=",
+  "dgSpecHash": "N5B+zr2loVU=",
   "success": true,
-  "projectFilePath": "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj",
+  "projectFilePath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Data\\AhorraYa.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\baezk\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\baezk\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
@@ -67,15 +67,5 @@
     "C:\\Users\\baezk\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\baezk\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "message": "Error al obtener los datos de vulnerabilidad del paquete: No se puede cargar el índice de servicio del origen https://api.nuget.org/v3/index.json.",
-      "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj",
-      "warningLevel": 1,
-      "filePath": "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }

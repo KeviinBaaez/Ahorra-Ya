@@ -10,3 +10,16 @@ D:\EDI III\AhorraYa\AhorraYa.Models\obj\Debug\net8.0\AhorraYa.Models.dll
 D:\EDI III\AhorraYa\AhorraYa.Models\obj\Debug\net8.0\refint\AhorraYa.Models.dll
 D:\EDI III\AhorraYa\AhorraYa.Models\obj\Debug\net8.0\AhorraYa.Models.pdb
 D:\EDI III\AhorraYa\AhorraYa.Models\obj\Debug\net8.0\ref\AhorraYa.Models.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Models\bin\Debug\net8.0\AhorraYa.Models.deps.json
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Models\bin\Debug\net8.0\AhorraYa.Models.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Models\bin\Debug\net8.0\AhorraYa.Models.pdb
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Models\obj\Debug\net8.0\AhorraYa.Models.csproj.AssemblyReference.cache
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Models\obj\Debug\net8.0\AhorraYa.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Models\obj\Debug\net8.0\AhorraYa.Models.AssemblyInfoInputs.cache
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Models\obj\Debug\net8.0\AhorraYa.Models.AssemblyInfo.cs
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Models\obj\Debug\net8.0\AhorraYa.Models.csproj.CoreCompileInputs.cache
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Models\obj\Debug\net8.0\AhorraYa.Models.sourcelink.json
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Models\obj\Debug\net8.0\AhorraYa.Models.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Models\obj\Debug\net8.0\refint\AhorraYa.Models.dll
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Models\obj\Debug\net8.0\AhorraYa.Models.pdb
+C:\Users\baezk\Source\Repos\Ahorra-Ya\AhorraYa.Models\obj\Debug\net8.0\ref\AhorraYa.Models.dll

@@ -2812,11 +2812,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\EDI III\\AhorraYa\\AhorraYa.Services\\AhorraYa.Services.csproj",
+      "projectUniqueName": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Services\\AhorraYa.Services.csproj",
       "projectName": "AhorraYa.Services",
-      "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Services\\AhorraYa.Services.csproj",
+      "projectPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Services\\AhorraYa.Services.csproj",
       "packagesPath": "C:\\Users\\baezk\\.nuget\\packages\\",
-      "outputPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Services\\obj\\",
+      "outputPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Services\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\vvvvvv\\NuGetPackages"
@@ -2837,11 +2837,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj": {
-              "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Data\\AhorraYa.Data.csproj"
+            "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Data\\AhorraYa.Data.csproj": {
+              "projectPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Data\\AhorraYa.Data.csproj"
             },
-            "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\AhorraYa.Models.csproj": {
-              "projectPath": "D:\\EDI III\\AhorraYa\\AhorraYa.Models\\AhorraYa.Models.csproj"
+            "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Models\\AhorraYa.Models.csproj": {
+              "projectPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\AhorraYa.Models\\AhorraYa.Models.csproj"
             }
           }
         }

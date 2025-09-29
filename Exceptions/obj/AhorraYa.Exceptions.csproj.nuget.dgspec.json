@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\EDI III\\AhorraYa\\Exceptions\\AhorraYa.Exceptions.csproj": {}
+    "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\Exceptions\\AhorraYa.Exceptions.csproj": {}
   },
   "projects": {
-    "D:\\EDI III\\AhorraYa\\Exceptions\\AhorraYa.Exceptions.csproj": {
+    "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\Exceptions\\AhorraYa.Exceptions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\EDI III\\AhorraYa\\Exceptions\\AhorraYa.Exceptions.csproj",
+        "projectUniqueName": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\Exceptions\\AhorraYa.Exceptions.csproj",
         "projectName": "AhorraYa.Exceptions",
-        "projectPath": "D:\\EDI III\\AhorraYa\\Exceptions\\AhorraYa.Exceptions.csproj",
+        "projectPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\Exceptions\\AhorraYa.Exceptions.csproj",
         "packagesPath": "C:\\Users\\baezk\\.nuget\\packages\\",
-        "outputPath": "D:\\EDI III\\AhorraYa\\Exceptions\\obj\\",
+        "outputPath": "C:\\Users\\baezk\\Source\\Repos\\Ahorra-Ya\\Exceptions\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\vvvvvv\\NuGetPackages"
