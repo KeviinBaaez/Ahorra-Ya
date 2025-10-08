@@ -27,7 +27,7 @@ Comparación de precios entre supermercados.
 Carga de nuevos precios (como si fueras un usuario).
 (Opcional futuro) Gestión de usuarios y control de quién cargó cada dato.
 
-🧰 Tecnologías tentativas
+🧰 Tecnologías y herramientas a utilizar	
 
 Frontend: HTML, CSS, JavaScript.
 
