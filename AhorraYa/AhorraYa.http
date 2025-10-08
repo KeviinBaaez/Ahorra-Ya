@@ -1,0 +1,6 @@
+@AhorraYa_HostAddress = http://localhost:5264
+
+GET {{AhorraYa_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
