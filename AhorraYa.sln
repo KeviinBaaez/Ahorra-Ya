@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AhorraYa.DataAccess", "Ahor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AhorraYa.Enums", "AhorraYa.Enums\AhorraYa.Enums.csproj", "{A7EE6F27-2085-48D0-8CEE-3B7EFD475164}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AhorraYa.Aplication", "AhorraYa.Aplication\AhorraYa.Aplication.csproj", "{9DD28386-DB5E-455B-A2A5-ABA3D41AA47A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AhorraYa.Application", "AhorraYa.Aplication\AhorraYa.Application.csproj", "{9DD28386-DB5E-455B-A2A5-ABA3D41AA47A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AhorraYa.Proyects", "AhorraYa.Proyects\AhorraYa.Proyects.csproj", "{51C9F7EC-84A3-4C00-A78A-2D39D6181330}"
 EndProject

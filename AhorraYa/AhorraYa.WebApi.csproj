@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AhorraYa.Aplication\AhorraYa.Aplication.csproj" />
+    <ProjectReference Include="..\AhorraYa.Aplication\AhorraYa.Application.csproj" />
     <ProjectReference Include="..\AhorraYa.DataAcces\AhorraYa.DataAccess.csproj" />
     <ProjectReference Include="..\AhorraYa.Models\AhorraYa.Entities.csproj" />
     <ProjectReference Include="..\AhorraYa.Services\AhorraYa.Services.csproj" />

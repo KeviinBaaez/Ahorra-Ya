@@ -1,5 +1,6 @@
 ﻿using AhorraYa.Abstractions;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace AhorraYa.Entities
 {
@@ -14,6 +15,7 @@ namespace AhorraYa.Entities
         [StringLength(30)]
         public string BrandName { get; set; } = null!;
 
-        public virtual ICollection<Product>? Products { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<Product> Products { get; set; }
     }
 }
