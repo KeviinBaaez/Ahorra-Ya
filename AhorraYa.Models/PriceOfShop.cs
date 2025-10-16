@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using AhorraYa.Abstractions;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AhorraYa.Entities
 {
-    public class PriceOfShop
+    public class PriceOfShop : IEntidad
     {
-        public int PriceOfShopId { get; set; }
+        public int Id { get; set; }
 
         [ForeignKey(nameof(Product))]
         public int ProductId { get; set; }

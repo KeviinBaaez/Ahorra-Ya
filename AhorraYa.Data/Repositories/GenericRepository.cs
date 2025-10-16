@@ -19,17 +19,17 @@ namespace AhorraYa.Repository.Repositories
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            return _dbContext.GetById(id);
         }
 
         public void RemoveById(int id)
         {
-            throw new NotImplementedException();
+            _dbContext.RemoveById(id);
         }
 
         public T Save(T entity)
         {
-            throw new NotImplementedException();
+            return _dbContext.Save(entity);
         }
 
 

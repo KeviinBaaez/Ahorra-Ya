@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AhorraYa.WebApi.Migrations
 {
     /// <inheritdoc />
-    public partial class NuevaTabla : Migration
+    public partial class CreacionDeLaBDD : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -54,55 +54,55 @@ namespace AhorraYa.WebApi.Migrations
                 name: "Brands",
                 columns: table => new
                 {
-                    BrandId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BrandName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    BrandName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Brands", x => x.BrandId);
+                    table.PrimaryKey("PK_Brands", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CategoryName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.CategoryId);
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Locations",
                 columns: table => new
                 {
-                    LocationId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     Number = table.Column<int>(type: "int", nullable: false),
                     Floor = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Locations", x => x.LocationId);
+                    table.PrimaryKey("PK_Locations", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "MeasurementUnits",
                 columns: table => new
                 {
-                    UnitId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UnitOfMeasure = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Abbreviation = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    UnitOfMeasure = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Abbreviation = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MeasurementUnits", x => x.UnitId);
+                    table.PrimaryKey("PK_MeasurementUnits", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -215,19 +215,19 @@ namespace AhorraYa.WebApi.Migrations
                 name: "Shops",
                 columns: table => new
                 {
-                    ShopId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ShopName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ShopName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LocationId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Shops", x => x.ShopId);
+                    table.PrimaryKey("PK_Shops", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Shops_Locations_LocationId",
                         column: x => x.LocationId,
                         principalTable: "Locations",
-                        principalColumn: "LocationId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
 
@@ -235,33 +235,33 @@ namespace AhorraYa.WebApi.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     BrandId = table.Column<int>(type: "int", nullable: false),
                     UnitId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Products_Brands_BrandId",
                         column: x => x.BrandId,
                         principalTable: "Brands",
-                        principalColumn: "BrandId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "CategoryId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Products_MeasurementUnits_UnitId",
                         column: x => x.UnitId,
                         principalTable: "MeasurementUnits",
-                        principalColumn: "UnitId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
 
@@ -269,7 +269,7 @@ namespace AhorraYa.WebApi.Migrations
                 name: "PriceOfShops",
                 columns: table => new
                 {
-                    PriceOfShopId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     ShopId = table.Column<int>(type: "int", nullable: false),
@@ -278,18 +278,18 @@ namespace AhorraYa.WebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PriceOfShops", x => x.PriceOfShopId);
+                    table.PrimaryKey("PK_PriceOfShops", x => x.Id);
                     table.ForeignKey(
                         name: "FK_PriceOfShops_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "ProductId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_PriceOfShops_Shops_ShopId",
                         column: x => x.ShopId,
                         principalTable: "Shops",
-                        principalColumn: "ShopId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
 
@@ -357,9 +357,13 @@ namespace AhorraYa.WebApi.Migrations
                 table: "Products",
                 column: "UnitId");
 
+            migrationBuilder.CreateIndex(
+                name: "IX_Shops_LocationId",
+                table: "Shops",
+                column: "LocationId");
         }
 
-        / <inheritdoc />
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

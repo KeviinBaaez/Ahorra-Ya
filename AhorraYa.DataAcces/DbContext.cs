@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AhorraYa.DataAccess
 {
-    public class DbContext<T> : IDbOperation<T> where T : class
+    public class DbContext<T> : IDbContext<T> where T : class, IEntidad
     {
         DbSet<T> _Items;
         DbDataAccess _ctx;
@@ -15,22 +15,39 @@ namespace AhorraYa.DataAccess
 
         public void RemoveById(int id)
         {
-            throw new NotImplementedException();
+            var entity = GetById(id);
+            if(entity is not null)
+            {
+                _Items.Remove(entity);
+            }
+            _ctx.SaveChanges();
         }
 
         public IList<T> GetAll()
         {
-            throw new NotImplementedException();
+            return _Items.ToList();
         }
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            
+            return _Items.FirstOrDefault(i => i.Id == id)!;
         }
 
         public T Save(T entity)
         {
-            throw new NotImplementedException();
+            if (entity.Id == 0)
+            {
+                _Items.Add(entity);
+            }
+            else
+            {
+                var entityDb = GetById(entity.Id);
+                _ctx.Entry(entityDb).State = EntityState.Detached;
+                _Items.Update(entity);
+            }
+            _ctx.SaveChanges();
+            return entity;
         }
     }
 }

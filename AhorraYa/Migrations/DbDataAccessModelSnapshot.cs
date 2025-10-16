@@ -27,49 +27,52 @@ namespace AhorraYa.WebApi.Migrations
 
             modelBuilder.Entity("AhorraYa.Entities.Brand", b =>
                 {
-                    b.Property<int>("BrandId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BrandId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("BrandName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("BrandId");
+                    b.HasKey("Id");
 
                     b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("AhorraYa.Entities.Category", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("CategoryId");
+                    b.HasKey("Id");
 
                     b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("AhorraYa.Entities.Location", b =>
                 {
-                    b.Property<int>("LocationId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LocationId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<int?>("Floor")
                         .HasColumnType("int");
@@ -77,38 +80,40 @@ namespace AhorraYa.WebApi.Migrations
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
-                    b.HasKey("LocationId");
+                    b.HasKey("Id");
 
                     b.ToTable("Locations");
                 });
 
             modelBuilder.Entity("AhorraYa.Entities.MeasurementUnit", b =>
                 {
-                    b.Property<int>("UnitId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UnitId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Abbreviation")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<string>("UnitOfMeasure")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
-                    b.HasKey("UnitId");
+                    b.HasKey("Id");
 
                     b.ToTable("MeasurementUnits");
                 });
 
             modelBuilder.Entity("AhorraYa.Entities.PriceOfShop", b =>
                 {
-                    b.Property<int>("PriceOfShopId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PriceOfShopId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -122,7 +127,7 @@ namespace AhorraYa.WebApi.Migrations
                     b.Property<int>("ShopId")
                         .HasColumnType("int");
 
-                    b.HasKey("PriceOfShopId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ProductId");
 
@@ -133,11 +138,11 @@ namespace AhorraYa.WebApi.Migrations
 
             modelBuilder.Entity("AhorraYa.Entities.Product", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
@@ -146,12 +151,13 @@ namespace AhorraYa.WebApi.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ProductName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("UnitId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
 
                     b.HasIndex("BrandId");
 
@@ -164,20 +170,21 @@ namespace AhorraYa.WebApi.Migrations
 
             modelBuilder.Entity("AhorraYa.Entities.Shop", b =>
                 {
-                    b.Property<int>("ShopId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShopId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("LocationId")
                         .HasColumnType("int");
 
                     b.Property<string>("ShopName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("ShopId");
+                    b.HasKey("Id");
 
                     b.HasIndex("LocationId");
 
@@ -385,13 +392,13 @@ namespace AhorraYa.WebApi.Migrations
             modelBuilder.Entity("AhorraYa.Entities.PriceOfShop", b =>
                 {
                     b.HasOne("AhorraYa.Entities.Product", "Product")
-                        .WithMany()
+                        .WithMany("PriceOfShops")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AhorraYa.Entities.Shop", "Shop")
-                        .WithMany()
+                        .WithMany("PriceOfShops")
                         .HasForeignKey("ShopId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -431,7 +438,7 @@ namespace AhorraYa.WebApi.Migrations
             modelBuilder.Entity("AhorraYa.Entities.Shop", b =>
                 {
                     b.HasOne("AhorraYa.Entities.Location", "Location")
-                        .WithMany("Shops")
+                        .WithMany()
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -500,14 +507,19 @@ namespace AhorraYa.WebApi.Migrations
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("AhorraYa.Entities.Location", b =>
-                {
-                    b.Navigation("Shops");
-                });
-
             modelBuilder.Entity("AhorraYa.Entities.MeasurementUnit", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("AhorraYa.Entities.Product", b =>
+                {
+                    b.Navigation("PriceOfShops");
+                });
+
+            modelBuilder.Entity("AhorraYa.Entities.Shop", b =>
+                {
+                    b.Navigation("PriceOfShops");
                 });
 #pragma warning restore 612, 618
         }

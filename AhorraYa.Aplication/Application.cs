@@ -13,22 +13,22 @@ namespace AhorraYa.Application
 
         public IList<T> GetAll()
         {
-            throw new NotImplementedException();
+            return _repository.GetAll();
         }
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            return _repository.GetById(id);
         }
 
         public void RemoveById(int id)
         {
-            throw new NotImplementedException();
+            _repository.RemoveById(id);
         }
 
         public T Save(T entity)
         {
-            throw new NotImplementedException();
+            return _repository.Save(entity);
         }
     }
 }
