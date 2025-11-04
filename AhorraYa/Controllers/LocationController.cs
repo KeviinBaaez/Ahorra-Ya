@@ -8,13 +8,13 @@ namespace AhorraYa.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LocationController : Controller
+    public class LocationsController : ControllerBase
     {
-        private readonly ILogger<LocationController> _logger;
+        private readonly ILogger<LocationsController> _logger;
         private readonly IApplication<Location> _location;
         private readonly IMapper _mapper;
 
-        public LocationController(ILogger<LocationController> logger,
+        public LocationsController(ILogger<LocationsController> logger,
             IApplication<Location> location,
             IMapper mapper)
         {

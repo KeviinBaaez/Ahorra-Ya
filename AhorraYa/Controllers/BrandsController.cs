@@ -8,7 +8,7 @@ namespace AhorraYa.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BrandsController : Controller
+    public class BrandsController : ControllerBase
     {
 
         private readonly ILogger<BrandsController> _logger;

@@ -1,4 +1,4 @@
-﻿using AhorraYa.Application.Dtos.Category;
+﻿using AhorraYa.Application.Dtos.MeasurementUnit;
 using AhorraYa.Application.Interfaces;
 using AhorraYa.Entities;
 using AutoMapper;
@@ -8,19 +8,18 @@ namespace AhorraYa.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : Controller
+    public class MeasurementUnitsController : ControllerBase
     {
-
-        private readonly ILogger<CategoryController> _logger;
-        private readonly IApplication<Category> _category;
+        private readonly ILogger<MeasurementUnitsController> _logger;
+        private readonly IApplication<MeasurementUnit> _measurementunit;
         private readonly IMapper _mapper;
 
-        public CategoryController(ILogger<CategoryController> logger,
-            IApplication<Category> category,
+        public MeasurementUnitsController(ILogger<MeasurementUnitsController> logger,
+            IApplication<MeasurementUnit> measurementunit,
             IMapper mapper)
         {
             _logger = logger;
-            _category = category;
+            _measurementunit = measurementunit;
             _mapper = mapper;
         }
 
@@ -29,10 +28,10 @@ namespace AhorraYa.WebApi.Controllers
         {
             try
             {
-                var categories = _mapper.Map<IList<CategoryResponseDto>>(_category.GetAll());
-                if (categories.Count > 0)
+                var list = _mapper.Map<IList<MeasurementUnitResponseDto>>(_measurementunit.GetAll());
+                if (list.Count > 0)
                 {
-                    return Ok(categories);
+                    return Ok(list);
                 }
                 else
                 {
@@ -56,12 +55,12 @@ namespace AhorraYa.WebApi.Controllers
             }
             try
             {
-                Category category = _category.GetById(id.Value);
-                if (category is null)
+                MeasurementUnit measurementunit = _measurementunit.GetById(id.Value);
+                if (measurementunit is null)
                 {
                     return NotFound();
                 }
-                return Ok(_mapper.Map<CategoryResponseDto>(category));
+                return Ok(_mapper.Map<MeasurementUnitResponseDto>(measurementunit));
             }
             catch (Exception)
             {
@@ -71,42 +70,41 @@ namespace AhorraYa.WebApi.Controllers
         }
 
         [HttpPost("Create")]
-        public async Task<IActionResult> Create(CategoryRequestDto categoryRequestDto)
+        public async Task<IActionResult> Create(MeasurementUnitRequestDto measurementunitRequestDto)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var category = _mapper.Map<Category>(categoryRequestDto);
-                    _category.Save(category);
-                    return Ok(category.Id);
+                    var measurementunit = _mapper.Map<MeasurementUnit>(measurementunitRequestDto);
+                    _measurementunit.Save(measurementunit);
+                    return Ok(measurementunit.Id);
                 }
                 catch (Exception)
                 {
 
                     throw;
                 }
-
             }
             return BadRequest();
         }
 
         [HttpPut("Update")]
-        public async Task<IActionResult> Update(int? id, CategoryRequestDto categoryRequestDto)
+        public async Task<IActionResult> Update(int? id, MeasurementUnitRequestDto measurementunitRequestDto)
         {
             if (ModelState.IsValid && id.HasValue)
             {
                 try
                 {
-                    Category categoryBack = _category.GetById(id.Value);
-                    if (categoryBack is null)
+                    MeasurementUnit measurementunitBack = _measurementunit.GetById(id.Value);
+                    if (measurementunitBack is null)
                     {
                         return NotFound();
                     }
-                    categoryBack = _mapper.Map<Category>(categoryRequestDto);
-                    _category.Save(categoryBack);
+                    measurementunitBack = _mapper.Map<MeasurementUnit>(measurementunitRequestDto);
+                    _measurementunit.Save(measurementunitBack);
 
-                    var response = _mapper.Map<CategoryResponseDto>(categoryBack);
+                    var response = _mapper.Map<MeasurementUnitResponseDto>(measurementunitBack);
                     return Ok(response);
                 }
                 catch (Exception)
@@ -125,12 +123,12 @@ namespace AhorraYa.WebApi.Controllers
             {
                 try
                 {
-                    Category categoryBack = _category.GetById(id.Value);
-                    if (categoryBack is null)
+                    MeasurementUnit measurementunitBack = _measurementunit.GetById(id.Value);
+                    if (measurementunitBack is null)
                     {
                         return NotFound();
                     }
-                    _category.RemoveById(categoryBack.Id);
+                    _measurementunit.RemoveById(measurementunitBack.Id);
                     return Ok();
                 }
                 catch (Exception)
@@ -141,6 +139,5 @@ namespace AhorraYa.WebApi.Controllers
             }
             return BadRequest();
         }
-
     }
 }
