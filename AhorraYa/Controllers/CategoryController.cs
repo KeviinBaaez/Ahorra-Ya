@@ -27,7 +27,23 @@ namespace AhorraYa.WebApi.Controllers
         [HttpGet("All")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(_mapper.Map<IList<CategoryResponseDto>>(_category.GetAll()));
+            try
+            {
+                var categories = _mapper.Map<IList<CategoryResponseDto>>(_category.GetAll());
+                if (categories.Count > 0)
+                {
+                    return Ok(categories);
+                }
+                else
+                {
+                    return NotFound("No records were found.");
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpGet]
@@ -38,65 +54,92 @@ namespace AhorraYa.WebApi.Controllers
             {
                 return BadRequest();
             }
-            Category category = _category.GetById(id.Value);
-            if (category is null)
+            try
             {
-                return NotFound();
+                Category category = _category.GetById(id.Value);
+                if (category is null)
+                {
+                    return NotFound();
+                }
+                return Ok(_mapper.Map<CategoryResponseDto>(category));
             }
-            return Ok(_mapper.Map<CategoryResponseDto>(category));
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpPost("Create")]
         public async Task<IActionResult> Create(CategoryRequestDto categoryRequestDto)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return BadRequest();
+                try
+                {
+                    var category = _mapper.Map<Category>(categoryRequestDto);
+                    _category.Save(category);
+                    return Ok(category.Id);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
             }
-            var category = _mapper.Map<Category>(categoryRequestDto);
-            _category.Save(category);
-            return Ok(category.Id);
+            return BadRequest();
         }
 
         [HttpPut("Update")]
         public async Task<IActionResult> Update(int? id, CategoryRequestDto categoryRequestDto)
         {
-            if (!id.HasValue)
+            if (ModelState.IsValid && id.HasValue)
             {
-                return BadRequest();
+                try
+                {
+                    Category categoryBack = _category.GetById(id.Value);
+                    if (categoryBack is null)
+                    {
+                        return NotFound();
+                    }
+                    categoryBack = _mapper.Map<Category>(categoryRequestDto);
+                    _category.Save(categoryBack);
+
+                    var response = _mapper.Map<CategoryResponseDto>(categoryBack);
+                    return Ok(response);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            Category categoryBack = _category.GetById(id.Value);
-            if (categoryBack is null)
-            {
-                return NotFound();
-            }
-            categoryBack = _mapper.Map<Category>(categoryRequestDto);
-            _category.Save(categoryBack);
-            return Ok();
+            return BadRequest();
         }
 
         [HttpDelete("Remove")]
         public async Task<IActionResult> Remove(int? id)
         {
-            if (!id.HasValue)
+            if (ModelState.IsValid && id.HasValue)
             {
-                return BadRequest();
+                try
+                {
+                    Category categoryBack = _category.GetById(id.Value);
+                    if (categoryBack is null)
+                    {
+                        return NotFound();
+                    }
+                    _category.RemoveById(categoryBack.Id);
+                    return Ok();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            Category categoryBack = _category.GetById(id.Value);
-            if (categoryBack is null)
-            {
-                return NotFound();
-            }
-            _category.RemoveById(categoryBack.Id);
-            return Ok();
+            return BadRequest();
         }
 
     }

@@ -1,10 +1,11 @@
 ﻿using AhorraYa.Entities;
+using AhorraYa.Entities.MicrosoftIdentity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AhorraYa.DataAccess
 {
-    public class DbDataAccess : IdentityDbContext
+    public class DbDataAccess : IdentityDbContext<User, Role, Guid, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
     {
         public DbDataAccess(DbContextOptions<DbDataAccess> options) : base(options) { }
         public DbDataAccess() { }
@@ -17,5 +18,11 @@ namespace AhorraYa.DataAccess
         public virtual DbSet<PriceOfShop> PriceOfShops { get; set; }
         public virtual DbSet<Shop> Shops { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.LogTo(Console.WriteLine).EnableDetailedErrors();
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+        }
     }
 }

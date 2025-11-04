@@ -26,7 +26,23 @@ namespace AhorraYa.WebApi.Controllers
         [HttpGet("All")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(_mapper.Map<IList<MeasurementUnitResponseDto>>(_measurementunit.GetAll()));
+            try
+            {
+                var list = _mapper.Map<IList<MeasurementUnitResponseDto>>(_measurementunit.GetAll());
+                if (list.Count > 0)
+                {
+                    return Ok(list);
+                }
+                else
+                {
+                    return NotFound("No records were found.");
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpGet]
@@ -37,65 +53,91 @@ namespace AhorraYa.WebApi.Controllers
             {
                 return BadRequest();
             }
-            MeasurementUnit measurementunit = _measurementunit.GetById(id.Value);
-            if (measurementunit is null)
+            try
             {
-                return NotFound();
+                MeasurementUnit measurementunit = _measurementunit.GetById(id.Value);
+                if (measurementunit is null)
+                {
+                    return NotFound();
+                }
+                return Ok(_mapper.Map<MeasurementUnitResponseDto>(measurementunit));
             }
-            return Ok(_mapper.Map<MeasurementUnitResponseDto>(measurementunit));
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpPost("Create")]
         public async Task<IActionResult> Create(MeasurementUnitRequestDto measurementunitRequestDto)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return BadRequest();
+                try
+                {
+                    var measurementunit = _mapper.Map<MeasurementUnit>(measurementunitRequestDto);
+                    _measurementunit.Save(measurementunit);
+                    return Ok(measurementunit.Id);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
-            var measurementunit = _mapper.Map<MeasurementUnit>(measurementunitRequestDto);
-            _measurementunit.Save(measurementunit);
-            return Ok(measurementunit.Id);
+            return BadRequest();
         }
 
         [HttpPut("Update")]
         public async Task<IActionResult> Update(int? id, MeasurementUnitRequestDto measurementunitRequestDto)
         {
-            if (!id.HasValue)
+            if (ModelState.IsValid && id.HasValue)
             {
-                return BadRequest();
+                try
+                {
+                    MeasurementUnit measurementunitBack = _measurementunit.GetById(id.Value);
+                    if (measurementunitBack is null)
+                    {
+                        return NotFound();
+                    }
+                    measurementunitBack = _mapper.Map<MeasurementUnit>(measurementunitRequestDto);
+                    _measurementunit.Save(measurementunitBack);
+
+                    var response = _mapper.Map<MeasurementUnitResponseDto>(measurementunitBack);
+                    return Ok(response);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            MeasurementUnit measurementunitBack = _measurementunit.GetById(id.Value);
-            if (measurementunitBack is null)
-            {
-                return NotFound();
-            }
-            measurementunitBack = _mapper.Map<MeasurementUnit>(measurementunitRequestDto);
-            _measurementunit.Save(measurementunitBack);
-            return Ok();
+            return BadRequest();
         }
 
         [HttpDelete("Remove")]
         public async Task<IActionResult> Remove(int? id)
         {
-            if (!id.HasValue)
+            if (ModelState.IsValid && id.HasValue)
             {
-                return BadRequest();
+                try
+                {
+                    MeasurementUnit measurementunitBack = _measurementunit.GetById(id.Value);
+                    if (measurementunitBack is null)
+                    {
+                        return NotFound();
+                    }
+                    _measurementunit.RemoveById(measurementunitBack.Id);
+                    return Ok();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            MeasurementUnit measurementunitBack = _measurementunit.GetById(id.Value);
-            if (measurementunitBack is null)
-            {
-                return NotFound();
-            }
-            _measurementunit.RemoveById(measurementunitBack.Id);
-            return Ok();
+            return BadRequest();
         }
     }
 }

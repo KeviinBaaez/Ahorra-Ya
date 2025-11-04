@@ -2,8 +2,10 @@ using AhorraYa.Abstractions;
 using AhorraYa.Application;
 using AhorraYa.Application.Interfaces;
 using AhorraYa.DataAccess;
+using AhorraYa.Entities.MicrosoftIdentity;
 using AhorraYa.Repository.Interfaces;
 using AhorraYa.Repository.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -25,6 +27,14 @@ builder.Services.AddDbContext<DbDataAccess>(options =>
         o => o.MigrationsAssembly("AhorraYa.WebApi"));
     options.UseLazyLoadingProxies();
 });
+
+builder.Services.AddIdentity<User, Role>(options =>
+options.SignIn.RequireConfirmedAccount = true).
+    AddDefaultTokenProviders().
+    AddEntityFrameworkStores<DbDataAccess>().
+    AddSignInManager<SignInManager<User>>().
+    AddRoleManager<RoleManager<Role>>().
+    AddUserManager<UserManager<User>>();
 //DI
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

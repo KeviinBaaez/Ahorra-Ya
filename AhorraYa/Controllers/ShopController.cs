@@ -26,7 +26,23 @@ namespace AhorraYa.WebApi.Controllers
         [HttpGet("All")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(_mapper.Map<IList<ShopResponseDto>>(_shop.GetAll()));
+            try
+            {
+                var shops = _mapper.Map<IList<ShopResponseDto>>(_shop.GetAll());
+                if (shops.Count > 0)
+                {
+                    return Ok(shops);
+                }
+                else
+                {
+                    return NotFound("No records were found.");
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpGet]
@@ -37,65 +53,91 @@ namespace AhorraYa.WebApi.Controllers
             {
                 return BadRequest();
             }
-            Shop shop = _shop.GetById(id.Value);
-            if (shop is null)
+            try
             {
-                return NotFound();
+                Shop shop = _shop.GetById(id.Value);
+                if (shop is null)
+                {
+                    return NotFound();
+                }
+                return Ok(_mapper.Map<ShopResponseDto>(shop));
             }
-            return Ok(_mapper.Map<ShopResponseDto>(shop));
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpPost("Create")]
         public async Task<IActionResult> Create(ShopRequestDto shopRequestDto)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return BadRequest();
+                try
+                {
+                    var shop = _mapper.Map<Shop>(shopRequestDto);
+                    _shop.Save(shop);
+                    return Ok(shop.Id);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
-            var shop = _mapper.Map<Shop>(shopRequestDto);
-            _shop.Save(shop);
-            return Ok(shop.Id);
+            return BadRequest();
         }
 
         [HttpPut("Update")]
         public async Task<IActionResult> Update(int? id, ShopRequestDto shopRequestDto)
         {
-            if (!id.HasValue)
+            if (ModelState.IsValid && id.HasValue)
             {
-                return BadRequest();
+                try
+                {
+                    Shop shopBack = _shop.GetById(id.Value);
+                    if (shopBack is null)
+                    {
+                        return NotFound();
+                    }
+                    shopBack = _mapper.Map<Shop>(shopRequestDto);
+                    _shop.Save(shopBack);
+
+                    var response = _mapper.Map<ShopResponseDto>(shopBack);
+                    return Ok(response);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            Shop shopBack = _shop.GetById(id.Value);
-            if (shopBack is null)
-            {
-                return NotFound();
-            }
-            shopBack = _mapper.Map<Shop>(shopRequestDto);
-            _shop.Save(shopBack);
-            return Ok();
+            return BadRequest();
         }
 
         [HttpDelete("Remove")]
         public async Task<IActionResult> Remove(int? id)
         {
-            if (!id.HasValue)
+            if (ModelState.IsValid && id.HasValue)
             {
-                return BadRequest();
+                try
+                {
+                    Shop shopBack = _shop.GetById(id.Value);
+                    if (shopBack is null)
+                    {
+                        return NotFound();
+                    }
+                    _shop.RemoveById(shopBack.Id);
+                    return Ok();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            Shop shopBack = _shop.GetById(id.Value);
-            if (shopBack is null)
-            {
-                return NotFound();
-            }
-            _shop.RemoveById(shopBack.Id);
-            return Ok();
+            return BadRequest();
         }
     }
 }

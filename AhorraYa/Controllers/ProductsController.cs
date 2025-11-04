@@ -25,7 +25,23 @@ namespace AhorraYa.WebApi.Controllers
         [HttpGet("All")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(_mapper.Map<IList<ProductResponseDto>>(_product.GetAll()));   
+            try
+            {
+                var products = _mapper.Map<IList<ProductResponseDto>>(_product.GetAll());
+                if (products.Count > 0)
+                {
+                    return Ok(products);
+                }
+                else
+                {
+                    return NotFound("No records were found.");
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpGet]
@@ -36,65 +52,91 @@ namespace AhorraYa.WebApi.Controllers
             {
                 return BadRequest();
             }
-            Product product = _product.GetById(id.Value);
-            if(product is null)
+            try
             {
-                return NotFound();
+                Product product = _product.GetById(id.Value);
+                if (product is null)
+                {
+                    return NotFound();
+                }
+                return Ok(_mapper.Map<ProductResponseDto>(product));
             }
-            return Ok(_mapper.Map<ProductResponseDto>(product));
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpPost("Create")]
         public async Task<IActionResult> Create(ProductRequestDto productRequestDto)
         {
-            if(!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return BadRequest();
+                try
+                {
+                    var product = _mapper.Map<Product>(productRequestDto);
+                    _product.Save(product);
+                    return Ok(product.Id);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
-            var product = _mapper.Map<Product>(productRequestDto);
-            _product.Save(product);
-            return Ok(product.Id);
+            return BadRequest();
         }
 
         [HttpPut("Update")]
         public async Task<IActionResult> Update(int? id, ProductRequestDto productRequestDto)
         {
-            if (!id.HasValue)
+            if (ModelState.IsValid && id.HasValue)
             {
-                return BadRequest();
+                try
+                {
+                    Product productBack = _product.GetById(id.Value);
+                    if (productBack is null)
+                    {
+                        return NotFound();
+                    }
+                    productBack = _mapper.Map<Product>(productRequestDto);
+                    _product.Save(productBack);
+
+                    var response = _mapper.Map<ProductResponseDto>(productBack);
+                    return Ok(response);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            Product productBack = _product.GetById(id.Value);
-            if(productBack is null)
-            {
-                return NotFound();
-            }
-            productBack = _mapper.Map<Product>(productRequestDto);
-            _product.Save(productBack);
-            return Ok();
+            return BadRequest();
         }
 
         [HttpDelete("Remove")]
         public async Task<IActionResult> Remove(int? id)
         {
-            if (!id.HasValue)
+            if (ModelState.IsValid && id.HasValue)
             {
-                return BadRequest();
+                try
+                {
+                    Product productBack = _product.GetById(id.Value);
+                    if (productBack is null)
+                    {
+                        return NotFound();
+                    }
+                    _product.RemoveById(productBack.Id);
+                    return Ok();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            Product productBack = _product.GetById(id.Value);
-            if (productBack is null)
-            {
-                return NotFound();
-            }
-            _product.RemoveById(productBack.Id);
-            return Ok();
+            return BadRequest();
         }
 
     }

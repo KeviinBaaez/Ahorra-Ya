@@ -26,7 +26,23 @@ namespace AhorraYa.WebApi.Controllers
         [HttpGet("All")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(_mapper.Map<IList<LocationResponseDto>>(_location.GetAll()));
+            try
+            {
+                var locations = _mapper.Map<IList<LocationResponseDto>>(_location.GetAll());
+                if(locations.Count > 0)
+                {
+                    return Ok(locations);
+                }
+                else
+                {
+                    return NotFound("No records were found.");
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpGet]
@@ -37,65 +53,92 @@ namespace AhorraYa.WebApi.Controllers
             {
                 return BadRequest();
             }
-            Location location = _location.GetById(id.Value);
-            if (location is null)
+            try
             {
-                return NotFound();
+                Location location = _location.GetById(id.Value);
+
+                if (location is null)
+                {
+                    return NotFound();
+                }
+                return Ok(_mapper.Map<LocationResponseDto>(location));
             }
-            return Ok(_mapper.Map<LocationResponseDto>(location));
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpPost("Create")]
         public async Task<IActionResult> Create(LocationRequestDto locationRequestDto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
+            if (ModelState.IsValid)
+            {                
+                try
+                {
+                    var location = _mapper.Map<Location>(locationRequestDto);
+                    _location.Save(location);
+                    return Ok(location.Id);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
-            var location = _mapper.Map<Location>(locationRequestDto);
-            _location.Save(location);
-            return Ok(location.Id);
+            return BadRequest();
         }
 
         [HttpPut("Update")]
         public async Task<IActionResult> Update(int? id, LocationRequestDto locationRequestDto)
         {
-            if (!id.HasValue)
+            if (ModelState.IsValid && id.HasValue)
             {
-                return BadRequest();
+                try
+                {
+                    Location locationBack = _location.GetById(id.Value);
+                    if (locationBack is null)
+                    {
+                        return NotFound();
+                    }
+                    locationBack = _mapper.Map<Location>(locationRequestDto);
+                    _location.Save(locationBack);
+
+                    var response = _mapper.Map<LocationResponseDto>(locationBack);
+                    return Ok(response);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            Location locationBack = _location.GetById(id.Value);
-            if (locationBack is null)
-            {
-                return NotFound();
-            }
-            locationBack = _mapper.Map<Location>(locationRequestDto);
-            _location.Save(locationBack);
-            return Ok();
+            return BadRequest();
         }
 
         [HttpDelete("Remove")]
         public async Task<IActionResult> Remove(int? id)
         {
-            if (!id.HasValue)
+            if (ModelState.IsValid && id.HasValue)
             {
-                return BadRequest();
+                try
+                {
+                    Location locationBack = _location.GetById(id.Value);
+                    if (locationBack is null)
+                    {
+                        return NotFound();
+                    }
+                    _location.RemoveById(locationBack.Id);
+                    return Ok();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            Location locationBack = _location.GetById(id.Value);
-            if (locationBack is null)
-            {
-                return NotFound();
-            }
-            _location.RemoveById(locationBack.Id);
-            return Ok();
+            return BadRequest();
         }
     }
 }
