@@ -1,4 +1,6 @@
 ﻿using AhorraYa.Abstractions;
+using AhorraYa.Exceptions;
+using AhorraYa.Exceptions.ExceptionsForId;
 using Microsoft.EntityFrameworkCore;
 
 namespace AhorraYa.DataAccess
@@ -15,11 +17,7 @@ namespace AhorraYa.DataAccess
 
         public void RemoveById(int id)
         {
-            var entity = GetById(id);
-            if(entity is not null)
-            {
-                _Items.Remove(entity);
-            }
+            _Items.Remove(_Items.FirstOrDefault(e =>e.Id == id)!);
             _ctx.SaveChanges();
         }
 
@@ -29,25 +27,48 @@ namespace AhorraYa.DataAccess
         }
 
         public T GetById(int id)
-        {
-            
-            return _Items.FirstOrDefault(i => i.Id == id)!;
+        {            
+            var entity = _Items.FirstOrDefault(i => i.Id == id)!;
+            if(entity is null)
+            {
+                throw new ExceptionIdNotFound(typeof(T), id.ToString());
+            }
+            return entity;
         }
 
         public T Save(T entity)
         {
             if (entity.Id == 0)
             {
-                _Items.Add(entity);
+                if (!Exist(entity))
+                {
+                    _Items.Add(entity);
+                }
             }
             else
             {
                 var entityDb = GetById(entity.Id);
-                _ctx.Entry(entityDb).State = EntityState.Detached;
-                _Items.Update(entity);
+                if (entityDb is null)
+                {
+                    throw new ExceptionIdNotFound(typeof(T), entity.Id.ToString());
+                }
+                if (!Exist(entity))
+                {
+                    _ctx.Entry(entityDb).State = EntityState.Detached;
+                    _Items.Update(entity);
+                }
             }
             _ctx.SaveChanges();
             return entity;
+        }
+
+        public bool Exist(T entity)
+        {
+            if (_Items.ToList().Any(i => i.Equals(entity))) //Validación que no existan 2 obj iguales
+            {
+                throw new ExceptionAlreadyExist(typeof(T));
+            }
+            return false;
         }
     }
 }

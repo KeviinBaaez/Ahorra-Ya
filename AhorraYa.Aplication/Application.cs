@@ -1,5 +1,6 @@
 ﻿using AhorraYa.Repository.Interfaces;
 using AhorraYa.Application.Interfaces;
+using AhorraYa.Exceptions;
 
 namespace AhorraYa.Application
 {

@@ -1,13 +1,14 @@
 ﻿using AhorraYa.Application.Dtos.Identity.User;
 using AutoMapper;
 
-namespace AhorraYa.WebApi.Mapping.Identity.User
+namespace AhorraYa.WebApi.Mapping.Identity.UserMP
 {
     public class UserMappingProfile : Profile
     {
         public UserMappingProfile()
         {
             CreateMap<UserRegisterRequestDto, UserRegisterResponseDto>();
+
         }
     }
 }

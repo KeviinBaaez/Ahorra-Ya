@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 namespace AhorraYa.WebApi.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
@@ -25,6 +26,7 @@ namespace AhorraYa.WebApi.Controllers
         }
 
         [HttpGet("All")]
+        [Authorize(Roles = "Viewer")]
         public async Task<IActionResult> GetAll()
         {
             try
@@ -71,6 +73,7 @@ namespace AhorraYa.WebApi.Controllers
         }
 
         [HttpPost("Create")]
+        [Authorize(Roles = "")]
         public async Task<IActionResult> Create(ProductRequestDto productRequestDto)
         {
             if (ModelState.IsValid)

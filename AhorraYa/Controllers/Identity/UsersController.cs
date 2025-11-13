@@ -1,4 +1,8 @@
-﻿using AhorraYa.Entities.MicrosoftIdentity;
+﻿using AhorraYa.Application.Dtos.Identity.User;
+using AhorraYa.Application.Interfaces;
+using AhorraYa.Entities;
+using AhorraYa.Entities.MicrosoftIdentity;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -15,14 +19,17 @@ namespace AhorraYa.WebApi.Controllers.Identity
         private readonly RoleManager<Role> _roleManager;
         private readonly UserManager<User> _userManager;
         private readonly ILogger<UsersController> _logger;
+        private readonly IMapper _mapper;
 
         public UsersController(RoleManager<Role> roleManager, 
-            UserManager<User> userManager, 
-            ILogger<UsersController> logger)
+            UserManager<User> userManager,
+            ILogger<UsersController> logger,
+            IMapper mapper)
         {
             _roleManager = roleManager;
             _userManager = userManager;
             _logger = logger;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -42,6 +49,42 @@ namespace AhorraYa.WebApi.Controllers.Identity
                     }
                 }
                 return BadRequest(new { userId = userId, roleId = roleId });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        //Este método fue creado para poder asignarle roles a los usuarios,
+        //como no sabia el Id de cada usuario, cree este método que solo lo debería ver el propietario.
+        [HttpGet("All")]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                var users = _userManager.Users.ToList();
+                var userNewList = new List<UserResponseDto>();
+                if (users.Count > 0)
+                {
+                    foreach (var item in users)
+                    {
+                        var newUser = new UserResponseDto()
+                        {
+                            Id = item.Id.ToString(),
+                            Name = item.Name,
+                            UserName = item.UserName ?? "Usuario Sin Nombre",
+                            Email = item.Email ?? "Usuario Sin Email"
+                        }; 
+                        userNewList.Add(newUser);
+                    }
+                    return Ok(userNewList);
+                }
+                else
+                {
+                    return NotFound("No records were found.");
+                }
             }
             catch (Exception)
             {

@@ -1,5 +1,4 @@
-﻿using AhorraYa.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace AhorraYa.Application.Dtos.Brand
 {

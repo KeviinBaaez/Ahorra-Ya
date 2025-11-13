@@ -15,12 +15,12 @@ namespace AhorraYa.WebApi.Controllers.Identity
     public class AuthController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
-        private readonly ILogger<ProductsController> _logger;
+        private readonly ILogger<AuthController> _logger;
         private readonly IServiceTokenHandler _serviceTokenHandler;
         private readonly IMapper _mapper;
 
         public AuthController(UserManager<User> userManager,
-              ILogger<ProductsController> logger,
+              ILogger<AuthController> logger,
               IServiceTokenHandler serviceTokenHandler,
               IMapper mapper)
         {

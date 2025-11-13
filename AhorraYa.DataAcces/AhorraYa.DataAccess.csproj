@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AhorraYa.Abstraction\AhorraYa.Abstractions.csproj" />
+    <ProjectReference Include="..\AhorraYa.Exceptions\AhorraYa.Exceptions.csproj" />
     <ProjectReference Include="..\AhorraYa.Models\AhorraYa.Entities.csproj" />
   </ItemGroup>
 

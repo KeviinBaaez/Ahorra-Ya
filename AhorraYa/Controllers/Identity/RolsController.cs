@@ -15,11 +15,11 @@ namespace AhorraYa.WebApi.Controllers.Identity
     public class RolsController : ControllerBase
     {
         private readonly RoleManager<Role> _roleManager;
-        private readonly ILogger<ProductsController> _logger;
+        private readonly ILogger<RolsController> _logger;
         private readonly IMapper _mapper;
 
         public RolsController(RoleManager<Role> roleManager, 
-            ILogger<ProductsController> logger, 
+            ILogger<RolsController> logger, 
             IMapper mapper)
         {
             _roleManager = roleManager;
@@ -65,9 +65,8 @@ namespace AhorraYa.WebApi.Controllers.Identity
                     }
                     return Ok(_mapper.Map<RolResponseDto>(role));
                 }
-                catch (Exception )
+                catch (Exception ex)
                 {
-
                     return Conflict();
                 }
             }
@@ -84,6 +83,7 @@ namespace AhorraYa.WebApi.Controllers.Identity
                 try
                 {
                     var role = _mapper.Map<Role>(rolRequestDto);
+                    role.Id = Guid.NewGuid();
                     var result = _roleManager.CreateAsync(role).Result;
                     if (result.Succeeded) 
                     {
