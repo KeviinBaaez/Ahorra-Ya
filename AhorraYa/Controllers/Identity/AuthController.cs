@@ -32,6 +32,7 @@ namespace AhorraYa.WebApi.Controllers.Identity
 
         [HttpPost]
         [Route("Register")]
+        [AllowAnonymous]
         public async Task<IActionResult> RegisterUser([FromBody] UserRegisterRequestDto user)
         {
             if(ModelState.IsValid)
@@ -92,12 +93,14 @@ namespace AhorraYa.WebApi.Controllers.Identity
                     {
                         try
                         {
+                            var roles = await _userManager.GetRolesAsync(existUser);
                             var parameters = new TokenParameters()
                             {
                                 Id = existUser.Id.ToString(),
                                 PasswordHash = existUser.PasswordHash,
                                 UserName = existUser.UserName,
-                                Email = existUser.Email
+                                Email = existUser.Email,
+                                Roles = roles
                             };
                             var jwt = _serviceTokenHandler.GenerateJwtTokens(parameters);
                             return Ok(new LoginUserResponseDto()

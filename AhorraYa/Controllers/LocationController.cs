@@ -1,5 +1,4 @@
-﻿using AhorraYa.Application.Dtos.Category;
-using AhorraYa.Application.Dtos.Location;
+﻿using AhorraYa.Application.Dtos.Location;
 using AhorraYa.Application.Interfaces;
 using AhorraYa.Entities;
 using AhorraYa.Exceptions;
@@ -12,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AhorraYa.WebApi.Controllers
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Roles = "Admin, ViewerPlus")]
     [Route("api/[controller]")]
     [ApiController]
     public class LocationsController : ControllerBase
@@ -30,12 +30,13 @@ namespace AhorraYa.WebApi.Controllers
         }
 
         [HttpGet("All")]
+        [Authorize(Roles = "Viewer")]
         public async Task<IActionResult> GetAll()
         {
             try
             {
                 var locations = _mapper.Map<IList<LocationResponseDto>>(_location.GetAll());
-                if(locations.Count > 0)
+                if (locations.Count > 0)
                 {
                     return Ok(locations);
                 }
@@ -64,6 +65,7 @@ namespace AhorraYa.WebApi.Controllers
 
         [HttpGet]
         [Route("GetById")]
+        [Authorize(Roles = "Viewer")]
         public async Task<IActionResult> GetById(int? id)
         {
             if (!id.HasValue)
@@ -102,7 +104,7 @@ namespace AhorraYa.WebApi.Controllers
         public async Task<IActionResult> Create(LocationRequestDto locationRequestDto)
         {
             if (ModelState.IsValid)
-            {                
+            {
                 try
                 {
                     if (locationRequestDto.Id != 0)

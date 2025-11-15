@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AhorraYa.WebApi.Controllers
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Roles = "Admin, ViewerPlus")]
     [Route("api/[controller]")]
     [ApiController]
     public class MeasurementUnitsController : ControllerBase
@@ -29,6 +30,7 @@ namespace AhorraYa.WebApi.Controllers
         }
 
         [HttpGet("All")]
+        [Authorize(Roles = "Viewer")]
         public async Task<IActionResult> GetAll()
         {
             try
@@ -64,6 +66,7 @@ namespace AhorraYa.WebApi.Controllers
 
         [HttpGet]
         [Route("GetById")]
+        [Authorize(Roles = "Viewer")]
         public async Task<IActionResult> GetById(int? id)
         {
             if (!id.HasValue)

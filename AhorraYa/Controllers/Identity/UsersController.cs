@@ -1,17 +1,15 @@
 ﻿using AhorraYa.Application.Dtos.Identity.User;
-using AhorraYa.Application.Interfaces;
-using AhorraYa.Entities;
 using AhorraYa.Entities.MicrosoftIdentity;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AhorraYa.WebApi.Controllers.Identity
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -21,7 +19,7 @@ namespace AhorraYa.WebApi.Controllers.Identity
         private readonly ILogger<UsersController> _logger;
         private readonly IMapper _mapper;
 
-        public UsersController(RoleManager<Role> roleManager, 
+        public UsersController(RoleManager<Role> roleManager,
             UserManager<User> userManager,
             ILogger<UsersController> logger,
             IMapper mapper)
@@ -43,7 +41,7 @@ namespace AhorraYa.WebApi.Controllers.Identity
                 if (user is not null && role is not null)
                 {
                     var status = await _userManager.AddToRoleAsync(user, role.Name);
-                    if(status.Succeeded)
+                    if (status.Succeeded)
                     {
                         return Ok(new { user = user.UserName, rol = role.Name });
                     }
@@ -76,7 +74,7 @@ namespace AhorraYa.WebApi.Controllers.Identity
                             Name = item.Name,
                             UserName = item.UserName ?? "Usuario Sin Nombre",
                             Email = item.Email ?? "Usuario Sin Email"
-                        }; 
+                        };
                         userNewList.Add(newUser);
                     }
                     return Ok(userNewList);

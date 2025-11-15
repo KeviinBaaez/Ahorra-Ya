@@ -1,15 +1,17 @@
 ﻿using AhorraYa.Application.Dtos.Identity.Rols;
 using AhorraYa.Entities.MicrosoftIdentity;
+using AhorraYa.Exceptions;
+using AhorraYa.Exceptions.ExceptionsForId;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AhorraYa.WebApi.Controllers.Identity
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class RolsController : ControllerBase
@@ -18,8 +20,8 @@ namespace AhorraYa.WebApi.Controllers.Identity
         private readonly ILogger<RolsController> _logger;
         private readonly IMapper _mapper;
 
-        public RolsController(RoleManager<Role> roleManager, 
-            ILogger<RolsController> logger, 
+        public RolsController(RoleManager<Role> roleManager,
+            ILogger<RolsController> logger,
             IMapper mapper)
         {
             _roleManager = roleManager;
@@ -34,7 +36,7 @@ namespace AhorraYa.WebApi.Controllers.Identity
             try
             {
                 var rols = _mapper.Map<IList<RolResponseDto>>(_roleManager.Roles.ToList());
-                if(rols.Count > 0)
+                if (rols.Count > 0)
                 {
                     return Ok(rols);
                 }
@@ -43,10 +45,21 @@ namespace AhorraYa.WebApi.Controllers.Identity
                     return NotFound("No records were found.");
                 }
             }
+            catch (ExceptionByServiceConnection ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            catch (AutoMapperMappingException)
+            {
+                throw new ExceptionMappingError();
+            }
+            catch (ExceptionMappingError ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
             catch (Exception)
             {
-
-                throw;
+                return StatusCode(500, "An unexpected error occurred");
             }
         }
 
@@ -59,15 +72,28 @@ namespace AhorraYa.WebApi.Controllers.Identity
                 try
                 {
                     var role = _roleManager.FindByIdAsync(id.Value.ToString());
-                    if(role is null)
-                    {
-                        return NotFound();
-                    }
-                    return Ok(_mapper.Map<RolResponseDto>(role));
+                    var response = _mapper.Map<RolResponseDto>(role);
+                    return Ok(response);
                 }
-                catch (Exception ex)
+                catch (AutoMapperMappingException)
                 {
-                    return Conflict();
+                    throw new ExceptionMappingError();
+                }
+                catch (ExceptionMappingError ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
+                catch (ExceptionIdNotFound ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
+                catch (ExceptionIdNotZero ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (Exception)
+                {
+                    return StatusCode(500, "An unexpected error occurred");
                 }
             }
             return BadRequest();
@@ -77,7 +103,7 @@ namespace AhorraYa.WebApi.Controllers.Identity
         [Route("Create")]
         public async Task<IActionResult> Create(RolRequestDto rolRequestDto)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var userId = Guid.Parse(User.FindFirst("Id")?.Value);
                 try
@@ -85,18 +111,29 @@ namespace AhorraYa.WebApi.Controllers.Identity
                     var role = _mapper.Map<Role>(rolRequestDto);
                     role.Id = Guid.NewGuid();
                     var result = _roleManager.CreateAsync(role).Result;
-                    if (result.Succeeded) 
+                    if (result.Succeeded)
                     {
                         return Ok(role.Id);
                     }
-                    return Problem(detail: result.Errors.First().Description, 
+                    return Problem(detail: result.Errors.First().Description,
                         instance: role.Name,
                         statusCode: StatusCodes.Status409Conflict);
                 }
+                catch (AutoMapperMappingException)
+                {
+                    throw new ExceptionRequestMappingError(); //No pudo mapear del Request al objeto local.
+                }
+                catch (ExceptionRequestMappingError ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionAlreadyExist ex) //Ya existe una category con el mismo nombre.
+                {
+                    return StatusCode(500, ex.Message);
+                }
                 catch (Exception)
                 {
-
-                    throw;
+                    return StatusCode(500, "An unexpected error occurred");
                 }
             }
             else
@@ -123,10 +160,29 @@ namespace AhorraYa.WebApi.Controllers.Identity
                     }
                     return Problem(detail: result.Errors.First().Description, instance: role.Name, statusCode: StatusCodes.Status409Conflict);
                 }
+                catch (AutoMapperMappingException)
+                {
+                    throw new ExceptionRequestMappingError();
+                }
+                catch (ExceptionRequestMappingError ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionIdNotFound ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
+                catch (ExceptionIdNotZero ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionAlreadyExist ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
                 catch (Exception)
                 {
-
-                    throw;
+                    return StatusCode(500, "An unexpected error occurred");
                 }
             }
             else

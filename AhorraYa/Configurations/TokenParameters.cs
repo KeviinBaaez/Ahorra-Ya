@@ -8,5 +8,6 @@ namespace AhorraYa.WebApi.Configurations
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public string Id { get; set; }
+        public IList<string> Roles { get; set; }
     }
 }

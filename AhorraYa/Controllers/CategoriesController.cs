@@ -1,5 +1,4 @@
-﻿using AhorraYa.Application.Dtos.Brand;
-using AhorraYa.Application.Dtos.Category;
+﻿using AhorraYa.Application.Dtos.Category;
 using AhorraYa.Application.Interfaces;
 using AhorraYa.Entities;
 using AhorraYa.Exceptions;
@@ -12,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AhorraYa.WebApi.Controllers
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Roles = "Admin, ViewerPlus")]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriesController : ControllerBase
@@ -31,6 +31,7 @@ namespace AhorraYa.WebApi.Controllers
         }
 
         [HttpGet("All")]
+        [Authorize(Roles = "Viewer")]
         public async Task<IActionResult> GetAll()
         {
             try
@@ -65,6 +66,7 @@ namespace AhorraYa.WebApi.Controllers
 
         [HttpGet]
         [Route("GetById")]
+        [Authorize(Roles = "Viewer")]
         public async Task<IActionResult> GetById(int? id)
         {
             if (!id.HasValue)
@@ -105,7 +107,7 @@ namespace AhorraYa.WebApi.Controllers
             {
                 try
                 {
-                    if(categoryRequestDto.Id != 0)
+                    if (categoryRequestDto.Id != 0)
                     {
                         throw new ExceptionIdNotZero(typeof(Category), categoryRequestDto.Id.ToString());
                     }
@@ -155,7 +157,7 @@ namespace AhorraYa.WebApi.Controllers
                 }
                 catch (AutoMapperMappingException)
                 {
-                    throw new ExceptionRequestMappingError(); 
+                    throw new ExceptionRequestMappingError();
                 }
                 catch (ExceptionRequestMappingError ex)
                 {
@@ -165,11 +167,11 @@ namespace AhorraYa.WebApi.Controllers
                 {
                     return StatusCode(500, ex.Message);
                 }
-                catch (ExceptionIdNotZero ex) 
+                catch (ExceptionIdNotZero ex)
                 {
                     return BadRequest(ex.Message);
                 }
-                catch (ExceptionAlreadyExist ex) 
+                catch (ExceptionAlreadyExist ex)
                 {
                     return StatusCode(500, ex.Message);
                 }

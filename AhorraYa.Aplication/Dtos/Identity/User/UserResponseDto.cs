@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AhorraYa.Entities.MicrosoftIdentity;
+using System.ComponentModel.DataAnnotations;
 
 namespace AhorraYa.Application.Dtos.Identity.User
 {

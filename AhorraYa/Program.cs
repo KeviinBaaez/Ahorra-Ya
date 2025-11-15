@@ -3,6 +3,7 @@ using AhorraYa.Application;
 using AhorraYa.Application.Interfaces;
 using AhorraYa.DataAccess;
 using AhorraYa.Entities.MicrosoftIdentity;
+using AhorraYa.Exceptions;
 using AhorraYa.Repository.Interfaces;
 using AhorraYa.Repository.Repositories;
 using AhorraYa.Services.Interfaces;
@@ -91,6 +92,23 @@ builder.Services.AddScoped(typeof(IDbContext<>), typeof(DbContext<>));
 builder.Services.AddScoped(typeof(IServiceTokenHandler), typeof(ServiceTokenHandler));
 
 var app = builder.Build();
+
+try
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var db = scope.ServiceProvider.GetRequiredService<DbDataAccess>();
+        if (!db.Database.CanConnect())
+        {
+            throw new ExceptionByServiceConnection();
+        }
+    }
+}
+catch (ExceptionByServiceConnection ex)
+{
+    Console.WriteLine(ex.Message);
+    throw;
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
