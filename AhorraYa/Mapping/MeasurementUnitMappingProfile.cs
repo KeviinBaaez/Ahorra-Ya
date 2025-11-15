@@ -9,7 +9,9 @@ namespace AhorraYa.WebApi.Mapping
         public MeasurementUnitMappingProfile()
         {
             CreateMap<MeasurementUnit, MeasurementUnitResponseDto>();
-            CreateMap<MeasurementUnitRequestDto, MeasurementUnit>();
+            CreateMap<MeasurementUnitRequestDto, MeasurementUnit>().ReverseMap();
+                //.ForMember(dest => dest.Abbreviation, opt => opt
+                //.MapFrom(src => src.Abbreviation));
         }
     }
 }

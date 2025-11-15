@@ -1,6 +1,9 @@
-﻿using AhorraYa.Application.Dtos.Category;
+﻿using AhorraYa.Application.Dtos.Brand;
+using AhorraYa.Application.Dtos.Category;
 using AhorraYa.Application.Interfaces;
 using AhorraYa.Entities;
+using AhorraYa.Exceptions;
+using AhorraYa.Exceptions.ExceptionsForId;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -42,10 +45,21 @@ namespace AhorraYa.WebApi.Controllers
                     return NotFound("No records were found.");
                 }
             }
+            catch (ExceptionByServiceConnection ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            catch (AutoMapperMappingException)
+            {
+                throw new ExceptionMappingError();
+            }
+            catch (ExceptionMappingError ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
             catch (Exception)
             {
-
-                throw;
+                return StatusCode(500, "An unexpected error occurred");
             }
         }
 
@@ -60,16 +74,27 @@ namespace AhorraYa.WebApi.Controllers
             try
             {
                 Category category = _category.GetById(id.Value);
-                if (category is null)
-                {
-                    return NotFound();
-                }
                 return Ok(_mapper.Map<CategoryResponseDto>(category));
+            }
+            catch (AutoMapperMappingException)
+            {
+                throw new ExceptionMappingError();
+            }
+            catch (ExceptionMappingError ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            catch (ExceptionIdNotFound ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            catch (ExceptionIdNotZero ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (Exception)
             {
-
-                throw;
+                return StatusCode(500, "An unexpected error occurred");
             }
         }
 
@@ -80,14 +105,33 @@ namespace AhorraYa.WebApi.Controllers
             {
                 try
                 {
+                    if(categoryRequestDto.Id != 0)
+                    {
+                        throw new ExceptionIdNotZero(typeof(Category), categoryRequestDto.Id.ToString());
+                    }
                     var category = _mapper.Map<Category>(categoryRequestDto);
                     _category.Save(category);
                     return Ok(category.Id);
                 }
+                catch (AutoMapperMappingException)
+                {
+                    throw new ExceptionRequestMappingError(); //No pudo mapear del Request al objeto local.
+                }
+                catch (ExceptionRequestMappingError ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionIdNotZero ex) //El Id es distinto a 0.
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionAlreadyExist ex) //Ya existe una category con el mismo nombre.
+                {
+                    return StatusCode(500, ex.Message);
+                }
                 catch (Exception)
                 {
-
-                    throw;
+                    return StatusCode(500, "An unexpected error occurred");
                 }
 
             }
@@ -102,20 +146,36 @@ namespace AhorraYa.WebApi.Controllers
                 try
                 {
                     Category categoryBack = _category.GetById(id.Value);
-                    if (categoryBack is null)
-                    {
-                        return NotFound();
-                    }
+
                     categoryBack = _mapper.Map<Category>(categoryRequestDto);
                     _category.Save(categoryBack);
 
                     var response = _mapper.Map<CategoryResponseDto>(categoryBack);
                     return Ok(response);
                 }
+                catch (AutoMapperMappingException)
+                {
+                    throw new ExceptionRequestMappingError(); 
+                }
+                catch (ExceptionRequestMappingError ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionIdNotFound ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
+                catch (ExceptionIdNotZero ex) 
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionAlreadyExist ex) 
+                {
+                    return StatusCode(500, ex.Message);
+                }
                 catch (Exception)
                 {
-
-                    throw;
+                    return StatusCode(500, "An unexpected error occurred");
                 }
             }
             return BadRequest();
@@ -129,17 +189,21 @@ namespace AhorraYa.WebApi.Controllers
                 try
                 {
                     Category categoryBack = _category.GetById(id.Value);
-                    if (categoryBack is null)
-                    {
-                        return NotFound();
-                    }
+
                     _category.RemoveById(categoryBack.Id);
                     return Ok();
                 }
+                catch (ExceptionIdNotZero ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionIdNotFound ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
                 catch (Exception)
                 {
-
-                    throw;
+                    return StatusCode(500, "An unexpected error occurred");
                 }
             }
             return BadRequest();

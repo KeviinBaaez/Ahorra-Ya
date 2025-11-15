@@ -1,6 +1,8 @@
 ﻿using AhorraYa.Application.Dtos.MeasurementUnit;
 using AhorraYa.Application.Interfaces;
 using AhorraYa.Entities;
+using AhorraYa.Exceptions;
+using AhorraYa.Exceptions.ExceptionsForId;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -41,12 +43,24 @@ namespace AhorraYa.WebApi.Controllers
                     return NotFound("No records were found.");
                 }
             }
+            catch (ExceptionByServiceConnection ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            catch (AutoMapperMappingException)
+            {
+                throw new ExceptionMappingError();
+            }
+            catch (ExceptionMappingError ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
             catch (Exception)
             {
-
-                throw;
+                return StatusCode(500, "An unexpected error occurred");
             }
         }
+
 
         [HttpGet]
         [Route("GetById")]
@@ -59,16 +73,27 @@ namespace AhorraYa.WebApi.Controllers
             try
             {
                 MeasurementUnit measurementunit = _measurementunit.GetById(id.Value);
-                if (measurementunit is null)
-                {
-                    return NotFound();
-                }
                 return Ok(_mapper.Map<MeasurementUnitResponseDto>(measurementunit));
+            }
+            catch (AutoMapperMappingException)
+            {
+                throw new ExceptionMappingError();
+            }
+            catch (ExceptionMappingError ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            catch (ExceptionIdNotFound ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            catch (ExceptionIdNotZero ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (Exception)
             {
-
-                throw;
+                return StatusCode(500, "An unexpected error occurred");
             }
         }
 
@@ -79,14 +104,34 @@ namespace AhorraYa.WebApi.Controllers
             {
                 try
                 {
-                    var measurementunit = _mapper.Map<MeasurementUnit>(measurementunitRequestDto);
-                    _measurementunit.Save(measurementunit);
-                    return Ok(measurementunit.Id);
+                    if (measurementunitRequestDto.Id != 0)
+                    {
+                        throw new ExceptionIdNotZero(typeof(MeasurementUnit), measurementunitRequestDto.Id.ToString());
+                    }
+
+                    var measurement = _mapper.Map<MeasurementUnit>(measurementunitRequestDto);
+                    _measurementunit.Save(measurement);
+                    return Ok(measurement.Id);
+                }
+                catch (AutoMapperMappingException)
+                {
+                    throw new ExceptionRequestMappingError(); //No pudo mapear del Request al objeto local.
+                }
+                catch (ExceptionRequestMappingError ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionIdNotZero ex) //El Id es distinto a 0.
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionAlreadyExist ex) //Ya existe una category con el mismo nombre.
+                {
+                    return StatusCode(500, ex.Message);
                 }
                 catch (Exception)
                 {
-
-                    throw;
+                    return StatusCode(500, "An unexpected error occurred");
                 }
             }
             return BadRequest();
@@ -100,20 +145,36 @@ namespace AhorraYa.WebApi.Controllers
                 try
                 {
                     MeasurementUnit measurementunitBack = _measurementunit.GetById(id.Value);
-                    if (measurementunitBack is null)
-                    {
-                        return NotFound();
-                    }
+
                     measurementunitBack = _mapper.Map<MeasurementUnit>(measurementunitRequestDto);
                     _measurementunit.Save(measurementunitBack);
 
                     var response = _mapper.Map<MeasurementUnitResponseDto>(measurementunitBack);
                     return Ok(response);
                 }
+                catch (AutoMapperMappingException)
+                {
+                    throw new ExceptionRequestMappingError();
+                }
+                catch (ExceptionRequestMappingError ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionIdNotFound ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
+                catch (ExceptionIdNotZero ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionAlreadyExist ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
                 catch (Exception)
                 {
-
-                    throw;
+                    return StatusCode(500, "An unexpected error occurred");
                 }
             }
             return BadRequest();
@@ -127,17 +188,21 @@ namespace AhorraYa.WebApi.Controllers
                 try
                 {
                     MeasurementUnit measurementunitBack = _measurementunit.GetById(id.Value);
-                    if (measurementunitBack is null)
-                    {
-                        return NotFound();
-                    }
+
                     _measurementunit.RemoveById(measurementunitBack.Id);
                     return Ok();
                 }
+                catch (ExceptionIdNotZero ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionIdNotFound ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
                 catch (Exception)
                 {
-
-                    throw;
+                    return StatusCode(500, "An unexpected error occurred");
                 }
             }
             return BadRequest();

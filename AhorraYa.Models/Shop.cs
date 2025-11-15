@@ -49,5 +49,29 @@ namespace AhorraYa.Entities
             LocationId = locationId;
         }
         #endregion
+
+
+        // override object.Equals
+        public override bool Equals(object? obj)
+        {
+            if (obj is null || !(obj is Shop shop)) return false;
+
+            if (string.IsNullOrWhiteSpace(ShopName) || string.IsNullOrWhiteSpace(shop.ShopName))
+                return false;
+
+            // Comparación insensible a mayúsculas/minúsculas
+            bool sameShopName = string.Equals(ShopName.Trim(), shop.ShopName.Trim(), StringComparison.OrdinalIgnoreCase);
+            bool sameLocationId = this.LocationId == shop.LocationId;
+
+            return sameShopName && sameLocationId;
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(
+                ShopName?.Trim().ToLowerInvariant(),
+                LocationId);
+        }
     }
 }

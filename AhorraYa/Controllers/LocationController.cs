@@ -1,6 +1,9 @@
-﻿using AhorraYa.Application.Dtos.Location;
+﻿using AhorraYa.Application.Dtos.Category;
+using AhorraYa.Application.Dtos.Location;
 using AhorraYa.Application.Interfaces;
 using AhorraYa.Entities;
+using AhorraYa.Exceptions;
+using AhorraYa.Exceptions.ExceptionsForId;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -41,10 +44,21 @@ namespace AhorraYa.WebApi.Controllers
                     return NotFound("No records were found.");
                 }
             }
+            catch (ExceptionByServiceConnection ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            catch (AutoMapperMappingException)
+            {
+                throw new ExceptionMappingError();
+            }
+            catch (ExceptionMappingError ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
             catch (Exception)
             {
-
-                throw;
+                return StatusCode(500, "An unexpected error occurred");
             }
         }
 
@@ -59,19 +73,30 @@ namespace AhorraYa.WebApi.Controllers
             try
             {
                 Location location = _location.GetById(id.Value);
-
-                if (location is null)
-                {
-                    return NotFound();
-                }
                 return Ok(_mapper.Map<LocationResponseDto>(location));
+            }
+            catch (AutoMapperMappingException)
+            {
+                throw new ExceptionMappingError();
+            }
+            catch (ExceptionMappingError ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            catch (ExceptionIdNotFound ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            catch (ExceptionIdNotZero ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (Exception)
             {
-
-                throw;
+                return StatusCode(500, "An unexpected error occurred");
             }
         }
+
 
         [HttpPost("Create")]
         public async Task<IActionResult> Create(LocationRequestDto locationRequestDto)
@@ -80,14 +105,34 @@ namespace AhorraYa.WebApi.Controllers
             {                
                 try
                 {
+                    if (locationRequestDto.Id != 0)
+                    {
+                        throw new ExceptionIdNotZero(typeof(Location), locationRequestDto.Id.ToString());
+                    }
+
                     var location = _mapper.Map<Location>(locationRequestDto);
                     _location.Save(location);
                     return Ok(location.Id);
                 }
+                catch (AutoMapperMappingException)
+                {
+                    throw new ExceptionRequestMappingError(); //No pudo mapear del Request al objeto local.
+                }
+                catch (ExceptionRequestMappingError ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionIdNotZero ex) //El Id es distinto a 0.
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionAlreadyExist ex) //Ya existe una location con los mismos datos.
+                {
+                    return StatusCode(500, ex.Message);
+                }
                 catch (Exception)
                 {
-
-                    throw;
+                    return StatusCode(500, "An unexpected error occurred");
                 }
             }
             return BadRequest();
@@ -101,20 +146,36 @@ namespace AhorraYa.WebApi.Controllers
                 try
                 {
                     Location locationBack = _location.GetById(id.Value);
-                    if (locationBack is null)
-                    {
-                        return NotFound();
-                    }
+
                     locationBack = _mapper.Map<Location>(locationRequestDto);
                     _location.Save(locationBack);
 
                     var response = _mapper.Map<LocationResponseDto>(locationBack);
                     return Ok(response);
                 }
+                catch (AutoMapperMappingException)
+                {
+                    throw new ExceptionRequestMappingError();
+                }
+                catch (ExceptionRequestMappingError ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionIdNotFound ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
+                catch (ExceptionIdNotZero ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionAlreadyExist ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
                 catch (Exception)
                 {
-
-                    throw;
+                    return StatusCode(500, "An unexpected error occurred");
                 }
             }
             return BadRequest();
@@ -128,17 +189,21 @@ namespace AhorraYa.WebApi.Controllers
                 try
                 {
                     Location locationBack = _location.GetById(id.Value);
-                    if (locationBack is null)
-                    {
-                        return NotFound();
-                    }
+
                     _location.RemoveById(locationBack.Id);
                     return Ok();
                 }
+                catch (ExceptionIdNotZero ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionIdNotFound ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
                 catch (Exception)
                 {
-
-                    throw;
+                    return StatusCode(500, "An unexpected error occurred");
                 }
             }
             return BadRequest();

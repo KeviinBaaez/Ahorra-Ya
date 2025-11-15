@@ -38,5 +38,23 @@ namespace AhorraYa.Entities
             UnitOfMeasure = unitOfMeasure;
         }
         #endregion
+
+        // override object.Equals
+        public override bool Equals(object? obj)
+        {
+            if (obj is null || !(obj is MeasurementUnit measurement)) return false;
+
+            if (string.IsNullOrWhiteSpace(UnitOfMeasure) || string.IsNullOrWhiteSpace(measurement.UnitOfMeasure))
+                return false;
+
+            // Comparación insensible a mayúsculas/minúsculas
+            return string.Equals(this.UnitOfMeasure.Trim(), measurement.UnitOfMeasure.Trim(), StringComparison.OrdinalIgnoreCase);
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            return UnitOfMeasure?.Trim().ToLowerInvariant().GetHashCode() ?? 0;
+        }
     }
 }

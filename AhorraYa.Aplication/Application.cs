@@ -1,15 +1,19 @@
-﻿using AhorraYa.Repository.Interfaces;
-using AhorraYa.Application.Interfaces;
-using AhorraYa.Exceptions;
+﻿using AhorraYa.Application.Interfaces;
+using AhorraYa.Repository.Interfaces;
 
 namespace AhorraYa.Application
 {
-    public class Application<T> : IApplication<T> 
+    public class Application<T> : IApplication<T>
     {
         private IGenericRepository<T> _repository;
         public Application(IGenericRepository<T> repository)
         {
             _repository = repository;
+        }
+
+        public bool Exist(T entity)
+        {
+            return _repository.Exist(entity);
         }
 
         public IList<T> GetAll()

@@ -12,6 +12,11 @@ namespace AhorraYa.Repository.Repositories
             _dbContext = dbContext;
         }
 
+        public bool Exist(T entity)
+        {
+            return _dbContext.Exist(entity);
+        }
+
         public IList<T> GetAll()
         {
             return _dbContext.GetAll();

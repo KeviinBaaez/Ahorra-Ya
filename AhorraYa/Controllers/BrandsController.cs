@@ -83,6 +83,10 @@ namespace AhorraYa.WebApi.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
+            catch (ExceptionIdNotZero ex)
+            {
+                return BadRequest(ex.Message);
+            }
             catch (Exception)
             {
                 return StatusCode(500, "An unexpected error occurred");
@@ -160,6 +164,10 @@ namespace AhorraYa.WebApi.Controllers
                 {
                     return StatusCode(500, ex.Message);
                 }
+                catch (ExceptionIdNotZero ex)
+                {
+                    return BadRequest(ex.Message);
+                }
                 catch (ExceptionAlreadyExist ex) //Ya existe una marca con el mismo nombre.
                 {
                     return StatusCode(500, ex.Message);
@@ -186,6 +194,10 @@ namespace AhorraYa.WebApi.Controllers
 
                     _brand.RemoveById(brandBack.Id);
                     return Ok();
+                }
+                catch (ExceptionIdNotZero ex)
+                {
+                    return BadRequest(ex.Message);
                 }
                 catch (ExceptionIdNotFound ex)
                 {

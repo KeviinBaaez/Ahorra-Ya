@@ -1,6 +1,8 @@
 ﻿using AhorraYa.Application.Dtos.Shop;
 using AhorraYa.Application.Interfaces;
 using AhorraYa.Entities;
+using AhorraYa.Exceptions;
+using AhorraYa.Exceptions.ExceptionsForId;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -15,14 +17,17 @@ namespace AhorraYa.WebApi.Controllers
     {
         private readonly ILogger<ShopsController> _logger;
         private readonly IApplication<Shop> _shop;
+        private readonly IApplication<Location> _location;
         private readonly IMapper _mapper;
 
         public ShopsController(ILogger<ShopsController> logger,
             IApplication<Shop> shop,
+            IApplication<Location> location,
             IMapper mapper)
         {
             _logger = logger;
             _shop = shop;
+            _location = location;
             _mapper = mapper;
         }
 
@@ -41,10 +46,21 @@ namespace AhorraYa.WebApi.Controllers
                     return NotFound("No records were found.");
                 }
             }
+            catch (ExceptionByServiceConnection ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            catch (AutoMapperMappingException)
+            {
+                throw new ExceptionMappingError();
+            }
+            catch (ExceptionMappingError ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
             catch (Exception)
             {
-
-                throw;
+                return StatusCode(500, "An unexpected error occurred");
             }
         }
 
@@ -59,16 +75,28 @@ namespace AhorraYa.WebApi.Controllers
             try
             {
                 Shop shop = _shop.GetById(id.Value);
-                if (shop is null)
-                {
-                    return NotFound();
-                }
-                return Ok(_mapper.Map<ShopResponseDto>(shop));
+                var response = _mapper.Map<ShopResponseDto>(shop);
+                return Ok(response);
+            }
+            catch (AutoMapperMappingException)
+            {
+                throw new ExceptionMappingError();
+            }
+            catch (ExceptionMappingError ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            catch (ExceptionIdNotFound ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            catch (ExceptionIdNotZero ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (Exception)
             {
-
-                throw;
+                return StatusCode(500, "An unexpected error occurred");
             }
         }
 
@@ -79,14 +107,39 @@ namespace AhorraYa.WebApi.Controllers
             {
                 try
                 {
+                    if(shopRequestDto.Id != 0)
+                    {
+                        throw new ExceptionIdNotZero(typeof(Shop), shopRequestDto.Id.ToString());
+                    }
+                    Location location = _location.GetById(shopRequestDto.LocationId);
+
                     var shop = _mapper.Map<Shop>(shopRequestDto);
                     _shop.Save(shop);
                     return Ok(shop.Id);
                 }
+                catch (AutoMapperMappingException)
+                {
+                    throw new ExceptionRequestMappingError(); //No pudo mapear del Request al objeto local.
+                }
+                catch (ExceptionRequestMappingError ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionIdNotZero ex) //El Id es distinto a 0.
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch(ExceptionIdNotFound ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
+                catch (ExceptionAlreadyExist ex) //Ya existe una category con el mismo nombre.
+                {
+                    return StatusCode(500, ex.Message);
+                }
                 catch (Exception)
                 {
-
-                    throw;
+                    return StatusCode(500, "An unexpected error occurred");
                 }
             }
             return BadRequest();
@@ -100,20 +153,37 @@ namespace AhorraYa.WebApi.Controllers
                 try
                 {
                     Shop shopBack = _shop.GetById(id.Value);
-                    if (shopBack is null)
-                    {
-                        return NotFound();
-                    }
+                    Location location = _location.GetById(shopRequestDto.LocationId);
+
                     shopBack = _mapper.Map<Shop>(shopRequestDto);
                     _shop.Save(shopBack);
 
                     var response = _mapper.Map<ShopResponseDto>(shopBack);
                     return Ok(response);
                 }
+                catch (AutoMapperMappingException)
+                {
+                    throw new ExceptionRequestMappingError();
+                }
+                catch (ExceptionRequestMappingError ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionIdNotFound ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
+                catch (ExceptionIdNotZero ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionAlreadyExist ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
                 catch (Exception)
                 {
-
-                    throw;
+                    return StatusCode(500, "An unexpected error occurred");
                 }
             }
             return BadRequest();
@@ -127,17 +197,20 @@ namespace AhorraYa.WebApi.Controllers
                 try
                 {
                     Shop shopBack = _shop.GetById(id.Value);
-                    if (shopBack is null)
-                    {
-                        return NotFound();
-                    }
                     _shop.RemoveById(shopBack.Id);
                     return Ok();
                 }
+                catch (ExceptionIdNotZero ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (ExceptionIdNotFound ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
                 catch (Exception)
                 {
-
-                    throw;
+                    return StatusCode(500, "An unexpected error occurred");
                 }
             }
             return BadRequest();

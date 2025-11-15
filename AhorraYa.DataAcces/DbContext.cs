@@ -27,7 +27,11 @@ namespace AhorraYa.DataAccess
         }
 
         public T GetById(int id)
-        {            
+        {   
+            if(id <= 0)
+            {
+                throw new ExceptionIdNotZero();
+            }
             var entity = _Items.FirstOrDefault(i => i.Id == id)!;
             if(entity is null)
             {

@@ -6,5 +6,6 @@
         IList<T> GetAll ();
         T GetById (int id);
         void RemoveById (int id);
+        bool Exist(T entity);
     }
 }

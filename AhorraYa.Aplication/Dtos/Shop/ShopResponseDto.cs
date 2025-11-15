@@ -5,5 +5,6 @@
         public int Id { get; set; }
         public string ShopName { get; set; } = null!;
         public int LocationId { get; set; }
+        public string? LocationAddress { get; set; }
     }
 }

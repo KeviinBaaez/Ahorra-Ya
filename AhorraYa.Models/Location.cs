@@ -37,6 +37,35 @@ namespace AhorraYa.Entities
             }
             Number = number;
         }
+
+        public string GetFullAddress()
+        {
+            return $"{Address} {Number}, Floor: {Floor ?? 0}";
+        }
         #endregion
+
+        // override object.Equals
+        public override bool Equals(object? obj)
+        {
+            if (obj is null || !(obj is Location location)) return false;
+
+            if (string.IsNullOrWhiteSpace(Address) || string.IsNullOrWhiteSpace(location.Address))
+                return false;
+
+            // Comparación insensible a mayúsculas/minúsculas
+            bool sameAddress = string.Equals(Address.Trim(), location.Address.Trim(), StringComparison.OrdinalIgnoreCase);
+            bool sameNumber = this.Number == location.Number;
+            bool sameFloor = this.Floor == location.Floor;
+
+            return sameAddress && sameNumber && sameFloor;
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(
+                Address?.Trim().ToLowerInvariant(),
+                Number, Floor);
+        }
     }
 }

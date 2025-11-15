@@ -33,6 +33,7 @@ namespace AhorraYa.Entities
             }
             BrandName = name;
         }
+
         #endregion
 
         // override object.Equals

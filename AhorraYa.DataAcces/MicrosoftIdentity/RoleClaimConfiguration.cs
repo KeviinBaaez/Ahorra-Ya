@@ -1,4 +1,5 @@
 ﻿using AhorraYa.Entities.MicrosoftIdentity;
+using AhorraYa.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
