@@ -30,7 +30,7 @@ namespace AhorraYa.WebApi.Controllers
         }
 
         [HttpGet("All")]
-        [Authorize(Roles = "Viewer")]
+        [Authorize(Roles = "Admin, ViewerPlus, Viewer")]
         public async Task<IActionResult> GetAll()
         {
             try
@@ -65,7 +65,7 @@ namespace AhorraYa.WebApi.Controllers
 
         [HttpGet]
         [Route("GetById")]
-        [Authorize(Roles = "Viewer")]
+        [Authorize(Roles = "Admin, ViewerPlus, Viewer")]
         public async Task<IActionResult> GetById(int? id)
         {
             if (!id.HasValue)
@@ -101,6 +101,7 @@ namespace AhorraYa.WebApi.Controllers
 
 
         [HttpPost("Create")]
+        [Authorize(Roles = "Admin, ViewerPlus")]
         public async Task<IActionResult> Create(LocationRequestDto locationRequestDto)
         {
             if (ModelState.IsValid)
@@ -141,6 +142,7 @@ namespace AhorraYa.WebApi.Controllers
         }
 
         [HttpPut("Update")]
+        [Authorize(Roles = "Admin, ViewerPlus")]
         public async Task<IActionResult> Update(int? id, LocationRequestDto locationRequestDto)
         {
             if (ModelState.IsValid && id.HasValue)
@@ -184,6 +186,7 @@ namespace AhorraYa.WebApi.Controllers
         }
 
         [HttpDelete("Remove")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Remove(int? id)
         {
             if (ModelState.IsValid && id.HasValue)
