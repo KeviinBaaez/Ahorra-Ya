@@ -17,7 +17,7 @@ namespace AhorraYa.DataAccess
 
         public void RemoveById(int id)
         {
-            _Items.Remove(_Items.FirstOrDefault(e =>e.Id == id)!);
+            _Items.Remove(_Items.FirstOrDefault(e => e.Id == id)!);
             _ctx.SaveChanges();
         }
 
@@ -27,18 +27,20 @@ namespace AhorraYa.DataAccess
         }
 
         public T GetById(int id)
-        {   
-            if(id <= 0)
+        {
+            if (id <= 0)
             {
                 throw new ExceptionIdNotZero();
             }
             var entity = _Items.FirstOrDefault(i => i.Id == id)!;
-            if(entity is null)
+            if (entity is null)
             {
                 throw new ExceptionIdNotFound(typeof(T), id.ToString());
             }
             return entity;
         }
+
+
 
         public T Save(T entity)
         {

@@ -1,10 +1,7 @@
 ﻿using AhorraYa.Abstractions;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Drawing;
-using System.Net;
 using System.Text.Json.Serialization;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AhorraYa.Entities
 {
@@ -24,7 +21,7 @@ namespace AhorraYa.Entities
         #region Properties
         public int Id { get; set; }
         [StringLength(50)]
-        public string? ProductName { get; private set; }
+        public string? Name { get; private set; }
 
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; private set; }
@@ -34,8 +31,12 @@ namespace AhorraYa.Entities
         public int BrandId { get; private set; }
         [JsonIgnore]
 
-        [ForeignKey(nameof(MeasurementUnit))]   
+        [ForeignKey(nameof(MeasurementUnit))]
         public int UnitId { get; private set; }
+
+        [StringLength(13)]
+        [RegularExpression(@"^\{13}$")]
+        public decimal? BarCode { get; set; }
         #endregion
 
         #region Virtual
@@ -54,12 +55,12 @@ namespace AhorraYa.Entities
             {
                 throw new ArgumentNullException("The product name cannot be empty");
             }
-            ProductName = productName;
+            Name = productName;
         }
 
         public void SetCategoryId(int categoryId)
         {
-            if(categoryId <= 0)
+            if (categoryId <= 0)
             {
                 throw new ArgumentNullException("Enter a valid number (Id)");
             }
@@ -90,11 +91,11 @@ namespace AhorraYa.Entities
         {
             if (obj is null || !(obj is Product product)) return false;
 
-            if (string.IsNullOrWhiteSpace(ProductName) || string.IsNullOrWhiteSpace(product.ProductName))
+            if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(product.Name))
                 return false;
 
             // Comparación insensible a mayúsculas/minúsculas
-            bool sameProducName = string.Equals(ProductName.Trim(), product.ProductName.Trim(), StringComparison.OrdinalIgnoreCase);
+            bool sameProducName = string.Equals(Name.Trim(), product.Name.Trim(), StringComparison.OrdinalIgnoreCase);
             bool sameBrandId = this.BrandId == product.BrandId;
             bool sameMeaserumentId = this.UnitId == product.UnitId;
 
@@ -105,7 +106,7 @@ namespace AhorraYa.Entities
         public override int GetHashCode()
         {
             return HashCode.Combine(
-                ProductName?.Trim().ToLowerInvariant(),
+                Name?.Trim().ToLowerInvariant(),
                 BrandId, UnitId);
         }
     }

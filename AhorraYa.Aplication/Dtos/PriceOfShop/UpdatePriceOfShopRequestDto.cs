@@ -1,0 +1,14 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AhorraYa.Application.Dtos.PriceOfShop
+{
+    public class UpdatePriceOfShopRequestDto
+    {
+        public int Id { get; set; }
+
+        [Range(0.01, 999999.99)]
+        public decimal Price { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime RegistrationDate { get; private set; }
+    }
+}
