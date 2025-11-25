@@ -63,8 +63,7 @@ namespace AhorraYa.WebApi.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("GetById")]
+        [HttpGet("GetById")]
         [Authorize(Roles = "Admin, ViewerPlus, Viewer")]
         public async Task<IActionResult> GetById(int? id)
         {

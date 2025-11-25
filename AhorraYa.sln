@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AhorraYa.Proyects", "Ahorra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AhorraYa.Exceptions", "AhorraYa.Exceptions\AhorraYa.Exceptions.csproj", "{FBB6611C-C416-45B7-8D75-F84A4612AA82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AhorraYa.WebClient", "AhorraYa.Client\AhorraYa.WebClient.csproj", "{5FDB61EF-A885-47BA-AAF5-C866C03E5CAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{FBB6611C-C416-45B7-8D75-F84A4612AA82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBB6611C-C416-45B7-8D75-F84A4612AA82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBB6611C-C416-45B7-8D75-F84A4612AA82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FDB61EF-A885-47BA-AAF5-C866C03E5CAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FDB61EF-A885-47BA-AAF5-C866C03E5CAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FDB61EF-A885-47BA-AAF5-C866C03E5CAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FDB61EF-A885-47BA-AAF5-C866C03E5CAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
