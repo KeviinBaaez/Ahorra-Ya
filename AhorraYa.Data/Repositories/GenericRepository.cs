@@ -1,5 +1,6 @@
 ﻿using AhorraYa.Abstractions;
 using AhorraYa.Repository.Interfaces;
+using System.Linq.Expressions;
 
 namespace AhorraYa.Repository.Repositories
 {
@@ -17,9 +18,10 @@ namespace AhorraYa.Repository.Repositories
             return _dbContext.Exist(entity);
         }
 
-        public IList<T> GetAll()
+        public IList<T> GetAll(Expression<Func<T, bool>>? filter = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null)
         {
-            return _dbContext.GetAll();
+            return _dbContext.GetAll(filter, orderBy);
         }
 
         public T GetById(int id)

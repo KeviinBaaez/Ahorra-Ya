@@ -7,6 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq.Expressions;
 
 namespace AhorraYa.WebApi.Controllers
 {
@@ -31,19 +32,80 @@ namespace AhorraYa.WebApi.Controllers
 
         [HttpGet("All")]
         [Authorize(Roles = "Admin, ViewerPlus, Viewer")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(string? searchText, string? orderBy="A-Z")
         {
             try
             {
-                var categories = _mapper.Map<IList<CategoryResponseDto>>(_category.GetAll());
+                Func<IQueryable<Category>, IOrderedQueryable<Category>>? categoryOrder = null;
+                if(orderBy == "A-Z")
+                {
+                    categoryOrder = c => c.OrderBy(c => c.CategoryName);
+                }
+                else
+                {
+                    categoryOrder = c => c.OrderByDescending(c => c.CategoryName);
+                }
+                Expression<Func<Category, bool>>? filter = null;
+                if(searchText != null)
+                {
+                    filter = c => c.CategoryName.Contains(searchText);
+                }
+                var categories = _mapper.Map<IList<CategoryResponseDto>>(_category.GetAll(filter, categoryOrder));
                 if (categories.Count > 0)
                 {
-                    return Ok(categories);
+                      return Ok(categories);
                 }
                 else
                 {
                     return NotFound("No records were found.");
                 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //var categories = _mapper.Map<IList<CategoryResponseDto>>(_category.GetAll());
+                //if (categories.Count > 0)
+                //{
+                //    if(searchText is null)
+                //    {
+                //        return Ok(categories);
+                //    }
+                //    else
+                //    {
+                //        var listaCoincidencias = new List<CategoryResponseDto>();
+                //        foreach (var item in categories)
+                //        {
+                //            if (item.CategoryName.Contains(searchText))
+                //            {
+                //                listaCoincidencias.Add(item);
+                //            }
+                //        }
+                //        if (listaCoincidencias.Count > 0)
+                //        {
+                //            return Ok(_mapper.Map<IList<CategoryResponseDto>>(listaCoincidencias));
+                //        }
+                //        //Esto esta de más, es provisorio.
+                //        else
+                //        {
+                //            throw new ExceptionIdNotFound(typeof(Category), searchText);
+                //        }
+                //    }
+
+                //}
+                //else
+                //{
+                //    return NotFound("No records were found.");
+                //}
             }
             catch (ExceptionByServiceConnection ex)
             {

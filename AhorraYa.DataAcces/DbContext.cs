@@ -2,6 +2,7 @@
 using AhorraYa.Exceptions;
 using AhorraYa.Exceptions.ExceptionsForId;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace AhorraYa.DataAccess
 {
@@ -21,9 +22,19 @@ namespace AhorraYa.DataAccess
             _ctx.SaveChanges();
         }
 
-        public IList<T> GetAll()
+        public IList<T> GetAll(Expression<Func<T, bool>>? filter = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null)
         {
-            return _Items.ToList();
+            IQueryable<T> query = _Items.AsQueryable();
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+            }
+            return query.AsNoTracking().ToList();
         }
 
         public T GetById(int id)

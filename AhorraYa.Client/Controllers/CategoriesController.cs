@@ -1,12 +1,10 @@
 ﻿using AhorraYa.Application.Dtos.Category;
 using AhorraYa.WebClient.ViewModels.Category;
 using AutoMapper;
-using Azure;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AhorraYa.WebClient.Controllers
 {
@@ -22,22 +20,25 @@ namespace AhorraYa.WebClient.Controllers
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = baseAddress;
             _mapper = mapper;
-            _jwtToken = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImE0NmM1ZmY3LTJkNDktNDNiMS0wZDM1LTA4ZGUyMjJkMzI2MyIsInN1YiI6ImE0NmM1ZmY3LTJkNDktNDNiMS0wZDM1LTA4ZGUyMjJkMzI2MyIsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzY0MTEwMzcxLCJleHAiOjE3NjQxMjQ3NzEsImlhdCI6MTc2NDExMDM3MX0.YzYiLrwx7Xr2j3ClZMgZtwOo2kbiUCqnhH0oZe04tM8HW-zWTVCo-LA6yT1S94zYsjcl0HUW1nA9lhKQyx_2-Q";
+            _jwtToken = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImE0NmM1ZmY3LTJkNDktNDNiMS0wZDM1LTA4ZGUyMjJkMzI2MyIsInN1YiI6ImE0NmM1ZmY3LTJkNDktNDNiMS0wZDM1LTA4ZGUyMjJkMzI2MyIsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzY0MTkyMjM1LCJleHAiOjE3NjQyMDY2MzUsImlhdCI6MTc2NDE5MjIzNX0.DjB3HzrqtBDnEoTAoZS14zwVZsbs8FixodgYd-rMyN4re_KwY-PF_8iNncJhE1EGoLWdkCrJew9nTaohB3F3EA";
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? searchText, string? orderCategories)
         {
             List<CategoryListVm> list = new List<CategoryListVm>();
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _jwtToken);
-            HttpResponseMessage response = await _httpClient.GetAsync("api/Categories/All");
+            HttpResponseMessage response = await _httpClient.GetAsync($"api/Categories/All?searchText={searchText}&orderBy={orderCategories}");
 
             if (response.IsSuccessStatusCode)
             {
                 string data = await response.Content.ReadAsStringAsync();
                 list = JsonConvert.DeserializeObject<List<CategoryListVm>>(data);
             }
+
+            ViewBag.CurrentSearchText = searchText;
+            ViewBag.OrderCategories = orderCategories;
 
             return View(list);
         }
@@ -94,7 +95,7 @@ namespace AhorraYa.WebClient.Controllers
 
                     HttpResponseMessage response;
                     string succesMessage;
-                    if(categoryRequest.Id == 0)
+                    if (categoryRequest.Id == 0)
                     {
                         response = await _httpClient.PostAsync("api/Categories/Create", content);
                         succesMessage = "successfully created category";
@@ -155,7 +156,7 @@ namespace AhorraYa.WebClient.Controllers
                 else
                 {
                     return NotFound($"Category With Id {id} Not Found. API status: {response.StatusCode}");
-                }                    
+                }
             }
             catch (Exception)
             {
@@ -180,7 +181,7 @@ namespace AhorraYa.WebClient.Controllers
 
 
                 HttpResponseMessage response = await _httpClient.DeleteAsync($"api/Categories/Remove?id={idToDelete}");
-                if(response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
                     TempData["success"] = "Category deleted correctly";
                     return RedirectToAction("Index");

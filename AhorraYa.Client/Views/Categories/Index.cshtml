@@ -8,6 +8,30 @@
 			<i class="bi bi.plus-circle me-1"></i> New Category	
 		</a>
 	</div>
+	<form method="get" asp-action="Index" asp-controller="Categories" class="mb-4 p-3 border rounded shadow bg-light">
+		<div class="row g-3 align-items-end">
+			<div class="col-md-5 col-lg-4">
+				<label for="searchText" class="form-label mb-0">Search Text</label>
+				<input type="text" class="form-control" id="searchText" name="searchText" value="@(ViewBag.CurrentSearchText ?? "")" placeholder="Enter category name or part of it" />
+			</div>
+			<div class="col-md-4 col-lg-3">
+				<label for="orderCategories" class="form-label mb-0">Order By</label>
+				<select class="form-select" id="orderCategories" name="orderCategories">
+					<option value="A-Z" selected="@(ViewBag.CurrentOrderCategories == "A-Z")">A-Z</option>
+					<option value="Z-A" selected="@(ViewBag.CurrentOrderCategories == "Z-A")">Z-A</option>
+				</select>
+			</div>
+			<div class="col-md-3 col-lg-5 d-flex align-items-end justify-content-md-start justify-content-lg-end">
+				<button type="submit" class="btn btn-primary me-2 flex-grow-1 flex-md-grow-0">
+					<i class="bi bi-search"></i>Search / Apply Order
+				</button>
+				<a class="btn btn-secondary flex-grow-1 flex-md-grow-1" href="@Url.Action("Index", "Categories")">
+					<i class="bi bi-arrow-clockwise"></i>Clear
+				</a>
+			</div>
+		</div>
+	</form>
+
 	<div class="card-body p-0">
 		@if (!Model.Any())
 		{
