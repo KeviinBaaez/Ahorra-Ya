@@ -20,7 +20,7 @@ namespace AhorraYa.WebClient.Controllers
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = baseAddress;
             _mapper = mapper;
-            _jwtToken = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImE0NmM1ZmY3LTJkNDktNDNiMS0wZDM1LTA4ZGUyMjJkMzI2MyIsInN1YiI6ImE0NmM1ZmY3LTJkNDktNDNiMS0wZDM1LTA4ZGUyMjJkMzI2MyIsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzY0MTkyMjM1LCJleHAiOjE3NjQyMDY2MzUsImlhdCI6MTc2NDE5MjIzNX0.DjB3HzrqtBDnEoTAoZS14zwVZsbs8FixodgYd-rMyN4re_KwY-PF_8iNncJhE1EGoLWdkCrJew9nTaohB3F3EA";
+            _jwtToken = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImE0NmM1ZmY3LTJkNDktNDNiMS0wZDM1LTA4ZGUyMjJkMzI2MyIsInN1YiI6ImE0NmM1ZmY3LTJkNDktNDNiMS0wZDM1LTA4ZGUyMjJkMzI2MyIsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzY0MzQ4NDYxLCJleHAiOjE3NjQzNjI4NjEsImlhdCI6MTc2NDM0ODQ2MX0.NpS6OqAzL43YdmJNTsX5sbxN604D7Q5maKZBKkN2AhoEN7xyk7uqBOB9EOs4Kj_bLtbldjC14PHJz3xk6jIfsA";
         }
 
         [HttpGet]

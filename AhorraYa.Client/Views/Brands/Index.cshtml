@@ -1,0 +1,78 @@
+﻿@model IEnumerable<AhorraYa.WebClient.ViewModels.Brand.BrandListVm>
+
+
+<div class="card shadow rounded mt-4 mb-5">
+	<div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+		<h4 class="mb-0">Brand List</h4>
+		<a class="btn btn-light text-primary fw-bold" asp-controller="Brands" asp-action="Upsert">
+			<i class="bi bi.plus-circle me-1"></i> New Brand
+		</a>
+	</div>
+	<form method="get" asp-action="Index" asp-controller="Brands" class="mb-4 p-3 border rounded shadow bg-light">
+		<div class="row g-3 align-items-end">
+			<div class="col-md-5 col-lg-4">
+				<label for="searchText" class="form-label mb-0">Search Text</label>
+				<input type="text" class="form-control" id="searchText" name="searchText" value="@(ViewBag.CurrentSearchText ?? "")" placeholder="Enter brand name or part of it" />
+			</div>
+			<div class="col-md-4 col-lg-3">
+				<label for="orderBrands" class="form-label mb-0">Order By</label>
+				<select class="form-select" id="orderBrands" name="orderBrands">
+					<option value="A-Z" selected="@(ViewBag.CurrentOrderBrands == "A-Z")">A-Z</option>
+					<option value="Z-A" selected="@(ViewBag.CurrentOrderBrands == "Z-A")">Z-A</option>
+				</select>
+			</div>
+			<div class="col-md-3 col-lg-5 d-flex align-items-end justify-content-md-start justify-content-lg-end">
+				<button type="submit" class="btn btn-primary me-2 flex-grow-1 flex-md-grow-0">
+					<i class="bi bi-search"></i>Search / Apply Order
+				</button>
+				<a class="btn btn-secondary flex-grow-1 flex-md-grow-1" href="@Url.Action("Index", "Brands")">
+					<i class="bi bi-arrow-clockwise"></i>Clear
+				</a>
+			</div>
+		</div>
+	</form>
+
+	<div class="card-body p-0">
+		@if (!Model.Any())
+		{
+			<div class="alert alert-warning m-3">
+				<p>There are no registered brands</p>
+			</div>
+		}
+		else
+		{
+			<table class="table table-hover mb-0">
+				<thead>
+					<tr class="row-cols-6">
+						<th class="col-10">Name</th>
+						<th class="col-2 text-center">Actions</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					@foreach (var brand in Model)
+					{
+						<tr class="row-cols-6">
+							<td class="col-10">@brand.BrandName</td>
+							<td class="col-2 text-center">
+								<a class="btn btn-sm btn-outline-warning me-1" asp-controller="Brands" asp-action="Upsert" asp-route-id="@brand.Id">
+									<i class="bi bi-pencil-square"></i>
+									Edit
+								</a>
+								<button type="button" class="btn btn-danger" onclick="confirm(@brand.Id, '@brand.BrandName', '@typeof(Brand).Name')">
+									<i class="bi bi-trash"></i>
+									Delete
+								</button>
+
+								<form id="formDelete-@brand.Id" method="post" asp-action="Delete" style="display: none">
+									@Html.AntiForgeryToken();
+									<input type="hidden" name="id" value="@brand.Id" />
+								</form>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		}
+	</div>
+</div>
